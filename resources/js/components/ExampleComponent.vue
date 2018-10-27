@@ -17,7 +17,7 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+            this.$toaster.success('Your toaster success message.')
         }
     }
 </script>

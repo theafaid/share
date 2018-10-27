@@ -1,4 +1,6 @@
 @include('layouts.partials.header')
-@include('layouts.partials.nav')
-@yield('content')
+<div id="app">
+    @include('layouts.partials.nav')
+    @yield('content')
+</div>
 @include('layouts.partials.footer')

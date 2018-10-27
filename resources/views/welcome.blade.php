@@ -9,7 +9,7 @@
                 <h1>
                     Share is a simple knowledge sharing through <br> information, skills, or expertise .
                 </h1>
-            </div>  
+            </div>
             <div class="head-bottom-meta d-flex justify-content-between align-items-end col-lg-12">
                 <div class="col-lg-6"></div>
                 <div class="col-lg-6 flex-row d-flex meta-right no-padding justify-content-end">
@@ -19,12 +19,11 @@
                     </div>
                     <img class="img-fluid user-img" src="{{asset('design')}}/img/owner.jpg" width="40" height="40">
                 </div>
-            </div>                                              
+            </div>
         </div>
     </div>
 </section>
 <!-- End banner Area -->
-
 
 <section class="category-area section-gap" id="news">
     <div class="container">
@@ -50,8 +49,6 @@
     </div>
 
 </section>
-
-
 
 <section class="category-area section-gap" id="news">
     <div class="container">

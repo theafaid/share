@@ -19,7 +19,6 @@
     <!-- End top-section Area -->
 
 
-
     <!-- Start post Area -->
     <div class="post-wrapper pt-100">
         <!-- Start post Area -->
