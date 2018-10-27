@@ -12,12 +12,20 @@ trait RecordActivity{
                 $model->recordActivity($event);
             });
         }
+
+        static::deleting(function($model){
+            $model->activities()->delete();
+        });
     }
 
+    /**
+     * @return mixed
+     */
     public function activities(){
         return $this->morphMany('App\Activity', 'subject');
     }
 
+  
     protected function recordActivity($event){
         $this->activities()->create([
             'user_id' => auth()->id(),
@@ -25,11 +33,19 @@ trait RecordActivity{
         ]);
     }
 
+    /**
+     * @param $event
+     * @return string
+     * @throws \ReflectionException
+     */
     protected function getActivityType($event){
         $className = strtolower((new \ReflectionClass($this))->getShortName());
         return "{$event}_{$className}";
     }
 
+    /**
+     * @return array
+     */
     protected static function events(){
         return ['created'];
     }

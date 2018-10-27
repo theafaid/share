@@ -13,6 +13,13 @@ class Comment extends Model
     protected $with = ['user', 'likes'];
     protected $withCount = ['likes'];
 
+    protected static function boot(){
+        parent::boot();
+        static::deleting(function($comment){
+            $comment->likes->each->delete();
+        });
+    }
+
     /**
      * @param $value
      * @return string

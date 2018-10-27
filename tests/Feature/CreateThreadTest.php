@@ -65,13 +65,22 @@ class CreateThreadTest extends TestCase
 
     /** @test */
     function a_thread_can_be_deleted_by_the_thread_owner(){
-        $user = $this->signIn();
+        $this->signIn();
         $thread = create('App\Thread', ['user_id' => auth()->id()]);
         $comment = create('App\Comment', ['thread_id' => $thread->id]);
         $response = $this->json('DELETE', "/threads/{$thread->slug}");
         $response->assertStatus(204);
         $this->assertDatabaseMissing("threads", ['id' => $thread->id]);
         $this->assertDatabaseMissing("comments", ['id' => $comment->id]);
+        $this->assertDatabaseMissing("activities", [
+            'subject_id' => $thread->id,
+            'subject_type' => get_class($thread)
+        ]);
+
+        $this->assertDatabaseMissing("activities", [
+            'subject_id' => $comment->id,
+            'subject_type' => get_class($comment)
+        ]);
     }
 
     /** @test */

@@ -2,6 +2,8 @@
 
 namespace Tests\Unit;
 
+use Carbon\Carbon;
+use App\Activity;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -23,7 +25,7 @@ class ActivityTest extends TestCase
             'user_id' => 1
         ]);
 
-        $activity = \App\Activity::first();
+        $activity = Activity::first();
 
         $this->assertEquals($activity->subject->id, $thread->id);
     }
@@ -41,4 +43,21 @@ class ActivityTest extends TestCase
             'user_id' => 1
         ]);
     }
+
+    /** @test */
+    function it_fetches_a_activities_feed_for_any_user(){
+
+        $user = create('App\User');
+        $this->actingAs($user);
+
+        create('App\Thread', ['user_id' => $user->id]);
+
+        $feed = Activity::feed($user);
+
+        $this->assertTrue($feed->keys()->
+            contains(Carbon::now()->format('Y-m-d | H:i')
+        ));
+
+    }
+
 }

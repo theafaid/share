@@ -16,7 +16,7 @@ class Thread extends Model
     protected static function boot(){
         parent::boot();
         static::deleting(function($model){
-            $model->comments()->delete();
+            $model->comments->each->delete();
         });
     }
 

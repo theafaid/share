@@ -99,6 +99,7 @@ class ThreadsController extends Controller
     public function destroy(Thread $thread)
     {
         $this->authorize("update", $thread);
+
         $thread->delete();
 
         if(request()->wantsJson()){

@@ -23,7 +23,7 @@ trait Likable
      * Remove Like from Thread or Comment
      */
     public function unlike(){
-        $this->likes()->where('user_id', auth()->id())->delete();
+        $this->likes()->where('user_id', auth()->id())->get()->each->delete();
     }
 
     /**
