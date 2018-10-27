@@ -14,8 +14,8 @@
                     <div id="edit-comment-container" v-else>
                         <textarea class="form-control" v-model="body"></textarea><br/>
                         <p class="float-right">
-                            <button class="btn btn-info btn-sm" @click="update()">Update</button>
-                            <button class="btn btn-link btn-sm" @click="editing = false">Cancel</button>
+                            <button class="genric-btn primary-border small" @click="update()">Update</button>
+                            <button class="genric-btn danger-border small" @click="editing = false">Cancel</button>
                         </p>
                     </div>
                 </div>
@@ -44,6 +44,10 @@
 
             <button class="genric-btn primary-border small" @click.prevent="editing=true" v-if="!editing">
                 <i class="fa fa-edit"></i>
+            </button>
+
+            <button class="genric-btn danger-border small" @click.prevent="destroy()">
+                <i class="fa fa-trash"></i>
             </button>
         </div>
 
@@ -76,6 +80,12 @@
                 axios.patch("/comments/" + this.data.id, {body: this.body});
                 this.editing = false;
                 this.$toaster.success("Your Comment Has Updated");
+            },
+
+            destroy(){
+                $(this.$el).fadeOut(200);
+                this.$toaster.success("Your Comment Has Been Deleted");
+                axios.delete(`/comments/${this.data.id}`);
             }
         }
 

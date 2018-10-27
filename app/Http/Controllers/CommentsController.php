@@ -97,7 +97,7 @@ class CommentsController extends Controller
 
         $comment->delete();
 
-        if(request()->wantsJson()){
+        if(request()->expectsJson()){
             return response([], 204);
         }
 
