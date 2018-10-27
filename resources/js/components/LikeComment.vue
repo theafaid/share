@@ -1,5 +1,5 @@
 <template>
-    <button class="generic-btn like-btn" :class="classes" @click.prevent="like()">
+    <button class="genric-btn like-btn" :class="classes" @click.prevent="like()">
         <i class="fa fa-thumbs-o-up"></i>
     </button>
 </template>

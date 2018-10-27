@@ -15,13 +15,6 @@ class Comment extends Model
     protected $withCount = ['likes'];
     protected $appends = ['isLiked'];
 
-    protected static function boot(){
-        parent::boot();
-        static::deleting(function($comment){
-            $comment->likes->each->delete();
-        });
-    }
-
     /**
      * @param $value
      * @return string

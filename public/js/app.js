@@ -14635,7 +14635,7 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass: "generic-btn like-btn",
+      staticClass: "genric-btn like-btn",
       class: _vm.classes,
       on: {
         click: function($event) {

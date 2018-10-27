@@ -4,6 +4,11 @@ namespace App;
 
 trait Likable
 {
+    protected static function bootLikable(){
+        static::deleting(function($model){
+            $model->likes->each->delete();
+        });
+    }
     /**
      * @return mixed
      */
