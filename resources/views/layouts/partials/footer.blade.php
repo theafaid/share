@@ -77,7 +77,7 @@
 <script src="{{asset('design')}}/js/jquery.magnific-popup.min.js"></script>
 <script src="{{asset('design')}}/js/jquery.sticky.js"></script>
 <script src="{{asset('design')}}/js/main.js"></script>
-
+<script src="{{asset('js/app.js')}}"></script>
 @stack('js')
 
 </body>

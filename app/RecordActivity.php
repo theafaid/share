@@ -25,7 +25,7 @@ trait RecordActivity{
         return $this->morphMany('App\Activity', 'subject');
     }
 
-  
+
     protected function recordActivity($event){
         $this->activities()->create([
             'user_id' => auth()->id(),
