@@ -46,20 +46,20 @@ class ParticipateInThreadsTest extends TestCase
             ->assertSessionHasErrors('body');
     }
 
-    protected function path($url = null){
-        return "/threads/{$this->thread->slug}/{$url}";
-    }
-
     /** @test */
     function a_authenticated_user_can_only_delete_his_comment(){
         $this->signIn();
 
         $comment = create('App\Comment', ['user_id' => auth()->id()]);
-        $response = $this->json('DELETE', $this->path("comments/{$comment->id}"));
+        $response = $this->json('DELETE', "/comments/{$comment->id}");
         $response->assertStatus(204);
 
         $comment = create('App\Comment');
-        $response = $this->json('DELETE', $this->path("comments/{$comment->id}"));
+        $response = $this->json('DELETE', "/comments/{$comment->id}");
         $response->assertStatus(403);
+    }
+
+    protected function path($url = null){
+        return "/threads/{$this->thread->slug}/{$url}";
     }
 }

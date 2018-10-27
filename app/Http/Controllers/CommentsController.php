@@ -81,13 +81,13 @@ class CommentsController extends Controller
         //
     }
 
+
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Comment $comment
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Thread $thread, Comment $comment)
+    public function destroy(Comment $comment)
     {
         $this->authorize('update', $comment);
 

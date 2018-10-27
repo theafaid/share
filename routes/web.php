@@ -24,7 +24,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/threads', 'ThreadsController');
-Route::resource('/threads/{thread}/comments', 'CommentsController');
+Route::post('/threads/{thread}/comments', 'CommentsController@store')->name('comments.store');
+Route::delete('/comments/{comment}', 'CommentsController@destroy')->name('comments.destroy');
 Route::resource('/channels', 'ChannelsController');
 Route::post('/comments/{comment}/likes', 'LikesController@store')->name("like.store");
 Route::get('/profile/{user}', 'ProfilesController@show')->name('profile');

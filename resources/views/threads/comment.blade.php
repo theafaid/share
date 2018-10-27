@@ -10,17 +10,28 @@
                 <p class="comment">
                     {{$comment->body}}
                 </p>
-                <br>
-                <div class="float-right">
-                    <form method="POST" action="{{route('like.store', $comment->id)}}">
-                        @csrf
-                        <button type="submit" class="btn {{$comment->isLiked() ? 'btn-primary' : 'btn-default'}}">
-                            <i class="fa fa-thumbs-o-up"></i>
-                            ({{$comment->likes_count}})
-                        </button>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
+
+    <div class="float-right">
+        <form style="display: inline;" method="POST" action="{{route('like.store', $comment->id)}}">
+            @csrf
+            <button type="submit" class="btn {{$comment->isLiked() ? 'btn-primary' : 'btn-default'}}">
+                <i class="fa fa-thumbs-o-up"></i>
+                ({{$comment->likes_count}})
+            </button>
+        </form>
+
+        <form style="display: inline;" method="POST" action="{{route('comments.destroy', $comment->id)}}">
+            @csrf
+            {{method_field('DELETE')}}
+            <button type="submit" class="btn btn-danger">
+                <i class="fa fa-trash"></i>
+            </button>
+        </form>
+    </div>
+
 </div>
+
+
