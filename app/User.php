@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    protected $appends = ['imagePath'];
     use Notifiable;
 
     /**
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'username', 'email', 'password','image'
     ];
 
     /**
@@ -50,7 +51,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function getImageAttribute($value){
-        return $value ? "/storage/{$value}" : "/design/img/default/avatar.png";
+    public function getImagePathAttribute(){
+        return $this->image ? "/storage/{$this->image}" : "/design/img/default/avatar.png";
     }
 }

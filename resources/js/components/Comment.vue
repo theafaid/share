@@ -3,7 +3,7 @@
         <div class="single-comment justify-content-between d-flex">
             <div class="user justify-content-between d-flex">
                 <div class="thumb">
-                <img width="30" height="30" :src="data.user.image" :alt="data.user.username">
+                <img width="30" height="30" :src="data.user.imagePath" :alt="data.user.username">
             </div>
                 <div class="desc">
                     <h5><a :href="'/profile/'+ data.user.username">{{data.user.username}}</a></h5>
@@ -24,15 +24,19 @@
 
         <div class="float-right">
 
-            <button class="genric-btn primary-border small" @click.prevent="editing=true" v-if="!editing">
-                <i class="fa fa-edit"></i>
-            </button>
+            <div v-if="signedIn">
+                <div style="display:inline" v-if="canUpdate">
+                    <button class="genric-btn primary-border small" @click.prevent="editing=true" v-if="!editing">
+                        <i class="fa fa-edit"></i>
+                    </button>
 
-            <button class="genric-btn danger-border small" @click.prevent="destroy()">
-                <i class="fa fa-trash"></i>
-            </button>
+                    <button class="genric-btn danger-border small" @click.prevent="destroy()">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
 
-            <like-comment :data="data"></like-comment>
+                <like-comment :data="data"></like-comment>
+            </div>
         </div>
 
     </div>
@@ -55,6 +59,18 @@
             }
         },
 
+        computed: {
+            signedIn(){
+                return !! user.id;
+            },
+
+            canUpdate(){
+               return this.authorize(user => this.data.user_id == user.id);
+            }
+        },
+
+
+
         methods:{
             update(){
                 if(this.body == ''){
@@ -73,7 +89,8 @@
             },
 
             destroy(){
-                $(this.$el).fadeOut(200);
+                // $(this.$el).fadeOut(200);
+                this.$emit("deleted", this.data.id);
                 this.$toaster.success("Your Comment Has Been Deleted");
                 axios.delete(`/comments/${this.data.id}`);
             }

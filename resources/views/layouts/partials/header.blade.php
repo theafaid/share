@@ -16,7 +16,7 @@
 <!-- Meta Description -->
 <meta name="description" content="">
 <!-- Meta Keyword -->
-<meta name="keywords" content="">
+<meta name="keywords" content="share,knowledge,learn,education,threads,channels,subscribe,experince">
 
 <!-- Site Title -->
 <title>@yield('title', 'Welcome To Share')</title>
@@ -36,5 +36,12 @@
 			font-family: 'Open Sans', sans-serif;
 		}
 	</style>
+
+	<script>
+		user = {!! json_encode([
+			'id' => auth()->id()
+		]) !!}
+
+	</script>
 </head>
 <body>

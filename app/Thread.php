@@ -13,6 +13,7 @@ class Thread extends Model
     protected $dates = ['created_at'];
     protected $with = ['channel', 'user'];
     protected $withCount = ['comments', 'likes'];
+    protected $appends = ['imagePath'];
 
     protected static function boot(){
         parent::boot();
@@ -40,7 +41,7 @@ class Thread extends Model
     /**
      * @return string
      */
-    public function image(){
+    public function getImagePathAttribute(){
         return $this->image ? "/storage/{$this->image}" : "/design/img/default/thread.png";
     }
 

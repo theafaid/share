@@ -12,13 +12,17 @@ import Toaster from 'v-toaster'
 import 'v-toaster/dist/v-toaster.css'
 Vue.use(Toaster, {timeout: 3000})
 
+window.Vue.prototype.authorize = function(handler){
+    return handler(user);
+};
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('comment', require('./components/Comment.vue'));
+Vue.component('thread', require('./pages/Thread.vue'));
 
 const app = new Vue({
     el: '#app'

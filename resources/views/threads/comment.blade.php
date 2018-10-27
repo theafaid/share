@@ -1,1 +1,0 @@
-<comment :data="{{$comment}}"></comment>
