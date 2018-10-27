@@ -50,7 +50,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function image(){
-        return $this->image ? "/storage/{$this->image}" : "/design/img/default/avatar.png";
+    public function getImageAttribute($value){
+        return $value ? "/storage/{$value}" : "/design/img/default/avatar.png";
     }
 }

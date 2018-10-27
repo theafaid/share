@@ -25,6 +25,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/threads', 'ThreadsController');
 Route::post('/threads/{thread}/comments', 'CommentsController@store')->name('comments.store');
+Route::patch('/comments/{comment}', 'CommentsController@update');
 Route::delete('/comments/{comment}', 'CommentsController@destroy')->name('comments.destroy');
 Route::resource('/channels', 'ChannelsController');
 Route::post('/comments/{comment}/likes', 'LikesController@store')->name("like.store");

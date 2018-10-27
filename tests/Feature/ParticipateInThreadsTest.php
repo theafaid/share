@@ -47,7 +47,7 @@ class ParticipateInThreadsTest extends TestCase
     }
 
     /** @test */
-    function a_authenticated_user_can_only_delete_his_comment(){
+    function authorized_user_can_only_delete_his_comment(){
         $this->signIn();
 
         $comment = create('App\Comment', ['user_id' => auth()->id()]);
@@ -61,5 +61,45 @@ class ParticipateInThreadsTest extends TestCase
 
     protected function path($url = null){
         return "/threads/{$this->thread->slug}/{$url}";
+    }
+
+    /** @test */
+    function authorized_user_can_update_his_comment(){
+        $this->signIn();
+
+        $comment = create('App\Comment', ['user_id' => auth()->id()]);
+
+        $this->patch("/comments/{$comment->id}", ['body' => 'new body']);
+
+        $this->assertDatabaseHas('comments', [
+            'id' => $comment->id,
+            'body' => 'new body'
+        ]);
+    }
+
+    /** @test */
+    function un_authorized_user_cannot_update_comment(){
+
+        $this->withExceptionHandling();
+
+        $comment = create('App\Comment');
+
+        $response = $this->patch("/comments/{$comment->id}", ['body' => 'new body']);
+        $response->assertRedirect('/login');
+
+        $this->signIn();
+
+        $this->patch("/comments/{$comment->id}", ['body' => 'new body'])
+            ->assertStatus(403);
+    }
+
+    /** @test */
+    function comment_requires_body_to_be_updated(){
+        $this->signIn();
+
+        $comment = create('App\Comment', ['user_id' => auth()->id()]);
+
+        $this->patch("/comments/{$comment->id}")
+            ->assertSessionHasErrors("body");
     }
 }

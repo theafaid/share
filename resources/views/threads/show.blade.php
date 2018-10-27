@@ -47,7 +47,7 @@
                                         <h3>{{$thread->created_at}}</h3>
                                     </div>
                                     <div class="user-img">
-                                        <img src="{{$thread->user->image()}}" alt="{{$thread->user->name}}" width="30" height="30">
+                                        <img src="{{$thread->user->image}}" alt="{{$thread->user->name}}" width="30" height="30">
                                     </div>
                                 </div>
                             </div>

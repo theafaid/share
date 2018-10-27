@@ -69,16 +69,20 @@ class CommentsController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(Comment $comment)
     {
-        //
+        $this->authorize('update', $comment);
+
+        $data = request()->validate(['body' => 'required|string|max:1000']);
+        $comment->body = $data['body'];
+        $comment->save();
+
+        if(request()->expectsJson()){
+            return response([], 204);
+        }
+
+        return back();
     }
 
 
