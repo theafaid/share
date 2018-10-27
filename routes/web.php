@@ -29,6 +29,7 @@ Route::patch('/comments/{comment}', 'CommentsController@update');
 Route::delete('/comments/{comment}', 'CommentsController@destroy')->name('comments.destroy');
 Route::resource('/channels', 'ChannelsController');
 Route::post('/comments/{comment}/likes', 'LikesController@store')->name("like.store");
+Route::delete('/comments/{comment}/likes', 'LikesController@destroy')->name("like.destroy");
 Route::get('/profile/{user}', 'ProfilesController@show')->name('profile');
 Route::get('/activities/{user}', 'ActivitiesController@show')->name('activities');
 Route::view('test' , 'threads.index');

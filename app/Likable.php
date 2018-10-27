@@ -30,7 +30,7 @@ trait Likable
      * Check if User has liked the thread or comment before
      * @return bool
      */
-    public function isLiked(){
+    public function getIsLikedAttribute(){
         return !! $this->likes->where('user_id', auth()->id())->count();
     }
 }

@@ -13942,22 +13942,8 @@ module.exports = function normalizeComponent (
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LikeComment__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LikeComment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__LikeComment__);
 //
 //
 //
@@ -14000,7 +13986,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        'like-comment': __WEBPACK_IMPORTED_MODULE_0__LikeComment___default.a
+    },
+
     props: ['data'],
     data: function data() {
         return {
@@ -14146,37 +14138,44 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "float-right" }, [
-        !_vm.editing
-          ? _c(
-              "button",
-              {
-                staticClass: "genric-btn primary-border small",
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.editing = true
+      _c(
+        "div",
+        { staticClass: "float-right" },
+        [
+          !_vm.editing
+            ? _c(
+                "button",
+                {
+                  staticClass: "genric-btn primary-border small",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.editing = true
+                    }
                   }
+                },
+                [_c("i", { staticClass: "fa fa-edit" })]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "genric-btn danger-border small",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.destroy()
                 }
-              },
-              [_c("i", { staticClass: "fa fa-edit" })]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "genric-btn danger-border small",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.destroy()
               }
-            }
-          },
-          [_c("i", { staticClass: "fa fa-trash" })]
-        )
-      ])
+            },
+            [_c("i", { staticClass: "fa fa-trash" })]
+          ),
+          _vm._v(" "),
+          _c("like-comment", { attrs: { data: _vm.data } })
+        ],
+        1
+      )
     ]
   )
 }
@@ -14490,6 +14489,173 @@ module.exports = function listToStyles (parentId, list) {
   return styles
 }
 
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(56)
+}
+var normalizeComponent = __webpack_require__(46)
+/* script */
+var __vue_script__ = __webpack_require__(58)
+/* template */
+var __vue_template__ = __webpack_require__(59)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/LikeComment.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-11c8c5ad", Component.options)
+  } else {
+    hotAPI.reload("data-v-11c8c5ad", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(57);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(53)("41be4b0a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-11c8c5ad\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LikeComment.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-11c8c5ad\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LikeComment.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(42)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.like-btn{\n    border-radius: 50%;\n    border: 0;\n    font-weight: bold;\n    text-align: center;\n    outline: none;\n}\n.liked{\n    background: #399cff;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['data'],
+
+    data: function data() {
+        return {
+            isLiked: this.data.isLiked
+        };
+    },
+
+
+    computed: {
+        classes: function classes() {
+            return [this.isLiked ? 'liked' : ''];
+        }
+    },
+
+    methods: {
+        like: function like() {
+            !this.isLiked ? this.likeComment() : this.unlikeComment();
+            this.isLiked = !this.isLiked;
+        },
+        likeComment: function likeComment() {
+            axios.post('/comments/' + this.data.id + '/likes');
+        },
+        unlikeComment: function unlikeComment() {
+            axios.delete('/comments/' + this.data.id + '/likes');
+        }
+    }
+});
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "generic-btn like-btn",
+      class: _vm.classes,
+      on: {
+        click: function($event) {
+          $event.preventDefault()
+          _vm.like()
+        }
+      }
+    },
+    [_c("i", { staticClass: "fa fa-thumbs-o-up" })]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-11c8c5ad", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

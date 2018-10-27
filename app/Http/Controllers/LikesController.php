@@ -14,8 +14,22 @@ class LikesController extends Controller
     public function store(Comment $comment){
         if(! $comment->likes()->where('user_id', auth()->id())->exists()){
         	$comment->like();
-        }else{
-        	$comment->unlike();
+        }
+
+        if(request()->expectsJson()){
+            return response([], 204);
+        }
+
+        return back();
+    }
+
+    public function destroy(Comment $comment){
+        if($comment->likes()->where(['user_id' => auth()->id()])->exists()){
+            $comment->unlike();
+        }
+
+        if(request()->expectsJson()){
+            return response([], 204);
         }
 
         return back();

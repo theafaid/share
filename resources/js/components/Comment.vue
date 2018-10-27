@@ -22,24 +22,6 @@
             </div>
         </div>
 
-        <!--<div class="float-right">-->
-            <!--<form style="display: inline;" method="POST" action="{{route('like.store', $comment->id)}}">-->
-                <!--@csrf-->
-                <!--<button type="submit" class="btn {{$comment->isLiked() ? 'btn-primary' : 'btn-default'}}">-->
-                    <!--<i class="fa fa-thumbs-o-up"></i>-->
-                    <!--({{$comment->likes_count}})-->
-                <!--</button>-->
-            <!--</form>-->
-
-            <!--<form style="display: inline;" method="POST" action="{{route('comments.destroy', $comment->id)}}">-->
-                <!--@csrf-->
-                <!--{{method_field('DELETE')}}-->
-                <!--<button type="submit" class="btn btn-danger">-->
-                    <!--<i class="fa fa-trash"></i>-->
-                <!--</button>-->
-            <!--</form>-->
-        <!--</div>-->
-
         <div class="float-right">
 
             <button class="genric-btn primary-border small" @click.prevent="editing=true" v-if="!editing">
@@ -49,6 +31,8 @@
             <button class="genric-btn danger-border small" @click.prevent="destroy()">
                 <i class="fa fa-trash"></i>
             </button>
+
+            <like-comment :data="data"></like-comment>
         </div>
 
     </div>
@@ -56,12 +40,18 @@
 
 
 <script>
+    import LikeComment from './LikeComment';
+
     export default {
+        components: {
+            'like-comment': LikeComment
+        },
+
         props: ['data'],
         data(){
             return {
                 editing: false,
-                body: this.data.body
+                body: this.data.body,
             }
         },
 
