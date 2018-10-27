@@ -5,6 +5,8 @@ trait RecordActivity{
 
     protected static function bootRecordActivity(){
 
+        if(auth()->guest()) return;
+
         foreach(static::events() as $event){
             static::$event(function($model) use ($event){
                 $model->recordActivity($event);

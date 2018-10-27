@@ -20,6 +20,7 @@ class Thread extends Model
         });
     }
 
+
     /**
      * @return string
      */

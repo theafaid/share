@@ -8,7 +8,7 @@ class Comment extends Model
 {
 
     use Likable;
-
+    use RecordActivity;
     protected $guarded = [];
     protected $with = ['user', 'likes'];
     protected $withCount = ['likes'];

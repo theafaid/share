@@ -35,6 +35,13 @@ class User extends Authenticatable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function activities(){
+        return $this->hasMany('App\Activity');
+    }
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
