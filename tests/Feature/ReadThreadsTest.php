@@ -1,0 +1,78 @@
+<?php
+
+namespace Tests\Feature;
+
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+class ReadThreadsTest extends TestCase
+{
+    use RefreshDatabase;
+    public function setUp(){
+        parent::setUp();
+        
+        $this->thread = create('App\Thread');
+    }
+
+   /** @test */
+   function a_user_can_view_all_threads()
+    {
+        $response = $this->get('/threads');
+        $response->assertSee($this->thread->title);
+
+    }
+
+    /** @test */
+     function a_user_can_read_a_single_thread(){
+        $response = $this->get("/threads/{$this->thread->slug}");
+        $response->assertSee($this->thread->title);
+    }
+
+    /** @test */
+    function a_user_can_read_comments_that_are_associated_with_a_thread(){
+        $comment = factory('App\Comment')->create(['thread_id' => $this->thread->id]);
+
+        $response = $this->get("/threads/{$this->thread->slug}");
+        $response->assertSee($comment->body);
+    }
+
+    /** @test */
+    function a_user_can_filter_threads_by_channel(){
+        $channel = create('App\Channel');
+        $threadInChannel = create('App\Thread', ['channel_id' => $channel->id]);
+        $threadNotInChannel = create('App\Thread');
+
+        $this->get("/channels/{$channel->slug}")
+            ->assertSee($threadInChannel->title)
+            ->assertDontSee($threadNotInChannel->title);
+    }
+
+    /** @test */
+    function a_user_can_filter_threads_by_any_username(){
+
+        $this->signIn();
+        $threadBySpesificUser = create('App\Thread', ['user_id' => auth()->id()]);
+        $threadByOther = create('App\Thread');
+
+        $this->get("/threads?by=" . auth()->user()->username)
+            ->assertSee($threadBySpesificUser->title)
+            ->assertDontSee($threadByOther->title);
+    }
+//
+//    /** @test */
+//    function a_user_can_filter_threads_by_popularity(){
+//
+//        $threadWithThreeComments = create('App\Thread');
+//        create('App\Comment', ['thread_id' => $threadWithThreeComments->id], 3);
+//
+//        $threadWithTwoComments = create('App\Thread');
+//        create('App\Comment', ['thread_id' => $threadWithTwoComments->id], 2);
+//
+//        $threadWithZeroComments = $this->thread;
+//
+//
+//        $response = $this->getJson("/threads?filter=popular")->json();
+//        $this->assertEquals([0, 2, 3], array_column($response, 'comments_count'));
+//    }
+
+}
