@@ -28,4 +28,5 @@ Route::resource('/threads/{thread}/comments', 'CommentsController');
 Route::resource('/channels', 'ChannelsController');
 Route::post('/comments/{comment}/likes', 'LikesController@store')->name("like.store");
 Route::get('/profile/{user}', 'ProfilesController@show')->name('profile');
+Route::get('/activities/{user}', 'ActivitiesController@show')->name('activities');
 Route::view('test' , 'threads.index');

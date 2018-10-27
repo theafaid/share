@@ -13,8 +13,9 @@
                     <pre>
                         <span>Member Since {{$profileUser->created_at->diffForHumans()}}</span>
                     </pre>
-
                 </div>
+
+                <a href="{{route('activities', $profileUser->username)}}" class="btn btn-info">Show Activities</a>
             </div>
         </div>
     </section>
