@@ -1,4 +1,4 @@
-<div class="comment-list">
+<div id="{{"comment-{$comment->id}"}}" class="comment-list">
     <div class="single-comment justify-content-between d-flex">
         <div class="user justify-content-between d-flex">
             <div class="thumb">

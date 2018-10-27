@@ -1,7 +1,7 @@
 @component('components.activity')
     @slot('title')
-        {{$user->username}} has created new thread
-        <a href="{{route('threads.show', $activity->subject->slug)}}">{{$activity->subject->title}}</a>
+        {{$user->username}} has created new comment on
+        <a href="{{$activity->subject->path()}}">{{$activity->subject->thread->title}}</a>
         <span class="btn btn-info float-right">{{$date}}</span>
     @endslot
 

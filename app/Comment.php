@@ -22,6 +22,13 @@ class Comment extends Model
     }
 
     /**
+     * @return string
+     */
+    public function path(){
+        return route("threads.show", $this->thread->slug) . "#comment-{$this->id}";
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(){
