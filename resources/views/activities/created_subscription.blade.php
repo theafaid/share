@@ -1,4 +1,4 @@
-@if($activity->subscribed_type == 'App\Thread')
+@if($activity->subject->subscribed_type == 'App\Thread')
     @component('components.activity')
         @slot('title')
                 {{$user->username}} has Subscribed a thread

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Thread extends Model
 {
     use Likable;
+    use Subscribed;
     use RecordActivity;
 
     protected $guarded = [];
@@ -19,7 +20,7 @@ class Thread extends Model
         parent::boot();
 
         static::created(function($thread){
-            $thread->subscribe($thread->user_id);
+            $thread->subscribeToThread($thread->user_id);
         });
 
         static::deleting(function($model){
@@ -83,28 +84,4 @@ class Thread extends Model
     public function likes(){
         return $this->morphMany('App\Like', 'likable');
     }
-
-    public function subscriptions(){
-        return $this->morphMany('App\Subscription', 'subscribed');
-    }
-
-    public function getIsSubscribedAttribute(){
-        return $this->subscriptions()->where('user_id', auth()->id())->exists();
-    }
-    public function subscribe($userId = null){
-        $userId = $userId ?: auth()->id();
-        $this->subscriptions()->create([
-            'user_id' => $userId,
-        ]);
-    }
-
-    public function unsubscribe($userId = null){
-        $userId = $userId ?: auth()->id();
-        $this->subscriptions()->where('user_id', $userId)->delete();
-    }
-
-    public function isSubscribed(){
-        return $this->subscriptions()->where('user_id', auth()->id())->exists();
-    }
-
 }
