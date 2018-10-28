@@ -12,4 +12,9 @@ class Like extends Model
     public function likable(){
         return $this->morphTo();
     }
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
 }

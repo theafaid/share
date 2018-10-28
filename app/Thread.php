@@ -86,9 +86,9 @@ class Thread extends Model
 
     protected function notifySubscribers($comment){
         foreach($this->subscriptions as $subscription){
-//            if($subscription->user->user_id != $comment->user_id){
+            if($subscription->user->id != $comment->user_id){
                 $subscription->user->notify(new ThreadReceivedNewComment($comment));
-//            }
+            }
         }
     }
 

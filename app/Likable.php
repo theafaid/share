@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Notifications\UserHasLikedYourComment;
+
 trait Likable
 {
     protected static function bootLikable(){
@@ -19,8 +21,15 @@ trait Likable
     /**
      * Create Like on Thread or Comment
      */
-    public function like(){
-        $this->likes()->create(['user_id' => auth()->id()]);
+    public function like($userId = null){
+        $userId = $userId ?: auth()->id();
+        $like = $this->likes()->create(['user_id' => $userId]);
+        $this->notifyCommentOwner($like);
+    }
+
+    protected function notifyCommentOwner($like){
+        if($like->user_id == $this->user_id) return ;
+        $this->user->notify(new UserHasLikedYourComment($like));
     }
 
 
