@@ -50,7 +50,10 @@
                         this.body = '';
                         this.$toaster.success("Your Comment Has Bee Published");
                         this.$emit('created', response.data);
-                });
+                    }).catch(error => {
+                        this.$toaster.error(error.response.data.errors.body[0]);
+                        this.body = '';
+                    });
             }
         }
     }

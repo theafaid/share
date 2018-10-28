@@ -14545,15 +14545,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
     components: {
         'like-comment': __WEBPACK_IMPORTED_MODULE_0__LikeComment___default.a
     },
 
     props: ['data'],
+
     data: function data() {
         return {
             editing: false,
-            body: this.data.body
+            body: this.data.body,
+            oldBody: ''
         };
     },
 
@@ -14573,18 +14576,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         update: function update() {
+            // old body will work if user has update his comment once
+            // and he want to update it again but he write a spam comment
+            // so we will rewind the body to be the old body not the main body
+            // which came from [this.data.body]
+            // this.oldBody = this.body;
+
             if (this.body == '') {
+
                 this.$toaster.warning("Comment Cannot Be Empty !");
             } else if (this.body == this.data.body) {
+
                 this.editing = false;
             } else {
                 this.persist();
             }
         },
         persist: function persist() {
-            axios.patch("/comments/" + this.data.id, { body: this.body });
-            this.editing = false;
-            this.$toaster.success("Your Comment Has Updated");
+            var _this2 = this;
+
+            axios.patch("/comments/" + this.data.id, { body: this.body }).then(function (response) {
+                _this2.editing = false;
+                _this2.$toaster.success("Your Comment Has Updated");
+            }).catch(function (error) {
+                _this2.$toaster.error(error.response.data.errors.body[0]);
+                _this2.body = _this2.data.body;
+                _this2.editing = false;
+            });
         },
         destroy: function destroy() {
             // $(this.$el).fadeOut(200);
@@ -15150,6 +15168,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.body = '';
                 _this.$toaster.success("Your Comment Has Bee Published");
                 _this.$emit('created', response.data);
+            }).catch(function (error) {
+                _this.$toaster.error(error.response.data.errors.body[0]);
+                _this.body = '';
             });
         }
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\FreeSpam;
 use App\Thread;
 use App\Queries\ThreadsFilter;
 
@@ -47,13 +48,15 @@ class ThreadsController extends Controller
     public function store()
     {
         $data = request()->validate([
-            'title' => 'required|string|max:255',
-            'body'  => 'required|string|min:255',
+            'title' => ['required', 'string', 'max:255', new FreeSpam()],
+            'body'  => ['required', 'string', 'min:255', new FreeSpam()],
             'image' => 'image|mimes:jpg,jpeg,png',
             'channel_id' => 'required|numeric|exists:channels,id'
         ]);
 
-        $data['image'] = request()->hasFile('image') ? request()->file('image')->store('threads') : null ;
+        $data['image'] = request()->hasFile('image') ?
+                            request()->file('image')->store('threads') : null ;
+
         $data['user_id' ] = auth()->id();
         $data['slug'] = str_slug($data['title']);
 
@@ -66,6 +69,7 @@ class ThreadsController extends Controller
     /**
      * @param Thread $thread
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
      */
     public function show(Thread $thread)
     {

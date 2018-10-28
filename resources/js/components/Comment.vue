@@ -47,15 +47,18 @@
     import LikeComment from './LikeComment';
 
     export default {
+
         components: {
             'like-comment': LikeComment
         },
 
         props: ['data'],
+
         data(){
             return {
                 editing: false,
                 body: this.data.body,
+                oldBody: ''
             }
         },
 
@@ -73,19 +76,37 @@
 
         methods:{
             update(){
+                // old body will work if user has update his comment once
+                // and he want to update it again but he write a spam comment
+                // so we will rewind the body to be the old body not the main body
+                // which came from [this.data.body]
+                // this.oldBody = this.body;
+
                 if(this.body == ''){
+
                     this.$toaster.warning("Comment Cannot Be Empty !");
+
                 }else if(this.body == this.data.body){
+
                     this.editing = false;
+
                 }else{
                     this.persist();
                 }
             },
 
             persist(){
-                axios.patch("/comments/" + this.data.id, {body: this.body});
-                this.editing = false;
-                this.$toaster.success("Your Comment Has Updated");
+                axios.patch("/comments/" + this.data.id, {body: this.body})
+                    .then(response => {
+                        this.editing = false;
+                        this.$toaster.success("Your Comment Has Updated");
+                    })
+                    .catch(error => {
+                        this.$toaster.error(error.response.data.errors.body[0]);
+                        this.body = this.data.body;
+                        this.editing = false;
+                    });
+
             },
 
             destroy(){

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\FreeSpam;
 use App\Thread;
 use App\Comment;
+
 class CommentsController extends Controller
 {
 
@@ -13,9 +15,8 @@ class CommentsController extends Controller
 
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Thread $thread
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function index(Thread $thread)
     {
@@ -36,7 +37,7 @@ class CommentsController extends Controller
     public function store(Thread $thread)
     {
         request()->validate([
-            'body' => 'required|string|max:1000'
+            'body' => ['required', 'string', 'max:1000', new FreeSpam()]
         ]);
 
         $comment = $thread->addComment(request('body'));
@@ -74,7 +75,10 @@ class CommentsController extends Controller
     {
         $this->authorize('update', $comment);
 
-        $data = request()->validate(['body' => 'required|string|max:1000']);
+        $data = request()->validate([
+            'body' => ['required', 'string', 'max:1000', new FreeSpam()]
+        ]);
+
         $comment->body = $data['body'];
         $comment->save();
 
