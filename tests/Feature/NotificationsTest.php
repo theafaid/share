@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Notifications\ThreadReceivedNewComment;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -12,30 +14,33 @@ class NotificationsTest extends TestCase
     /** @test */
     function an_subscriber_must_be_notified_after_subscribed_thread_receive_new_comment(){
 
+        Notification::fake();
+
         $this->signIn();
 
         $thread = create('App\Thread');
 
         $this->post("/threads/{$thread->slug}/subscriptions");
 
-        $thread->addComment("bla bla");
+        $user = create('App\User');
 
-        $this->get('/notifications')
-            ->assertStatus(200);
+        $thread->addComment("bla bla", $user->id);
 
-        $this->assertCount(1, auth()->user()->notifications);
+        Notification::assertSentTo(auth()->user(), ThreadReceivedNewComment::class);
     }
 
     /** @test */
     function a_user_can_clear_a_notification(){
-        $this->signIn();
 
+        $this->signIn();
 
         $thread = create('App\Thread');
 
         $thread->subscribe(auth()->id());
 
-        $thread->addComment("bla bla");
+        $user = create('App\User');
+
+        $thread->addComment("bla bla", $user->id);
 
         $userNotifications = auth()->user()->notifications;
 

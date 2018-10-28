@@ -73,10 +73,10 @@ class Thread extends Model
      * @param $comment
      * @return Model
      */
-    public function addComment($body){
+    public function addComment($body, $userId = null){
         $comment = $this->comments()->create([
             'body' => $body,
-            'user_id' => auth()->id()
+            'user_id' => $userId ?: auth()->id()
         ]);
 
         $this->notifySubscribers($comment);

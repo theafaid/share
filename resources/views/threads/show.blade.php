@@ -57,6 +57,7 @@
                                     <p v-text="thread.body"></p>
                                 </div>
 
+
                                 <div class="bottom-wrapper">
                                     <div class="row">
                                         <div class="col-lg-4 single-b-wrap col-md-12">
@@ -67,12 +68,12 @@
                                             <i class="fa fa-comment-o" aria-hidden="true"></i>
                                             @{{thread.comments_count}} Comments
                                         </div>
-                                        <div class="col-lg-4 single-b-wrap col-md-12">
-                                            <div class="addthis_inline_share_toolbox"></div>
-                                        </div>
                                     </div>
                                 </div>
 
+                                <div class="col-lg-12 single-b-wrap col-md-12">
+                                    <div class="addthis_inline_share_toolbox float-right"></div>
+                                </div>
 
                                 <!-- Start comment-sec Area -->
                                 <section class="comment-sec-area pt-80 pb-80">
