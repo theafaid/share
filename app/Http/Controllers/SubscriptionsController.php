@@ -20,15 +20,15 @@ class SubscriptionsController extends Controller
     public function subscribeToThread(Thread $thread){
 
         if(! $thread->isSubscribed){
-            $thread->subscribeToThread();
+            $thread->subscribe();
         }
 
         return response([], 204);
 
     }
 
-    public function unsubscribeToThread(Thread $thread){
-        $thread->isSubscribed ? $thread->unsubscribeFromThread() : '';
+    public function unsubscribeFromThread(Thread $thread){
+        $thread->isSubscribed ? $thread->unsubscribe() : '';
 
         return response([], 204);
     }

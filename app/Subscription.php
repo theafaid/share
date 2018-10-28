@@ -16,4 +16,8 @@ class Subscription extends Model
     public function subscribed(){
         return $this->morphTo();
     }
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

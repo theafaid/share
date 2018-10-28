@@ -27,7 +27,7 @@ Route::resource('/threads', 'ThreadsController');
 Route::get('/threads/{thread}/comments', 'CommentsController@index');
 Route::post('/threads/{thread}/comments', 'CommentsController@store')->name('comments.store');
 Route::post('/threads/{thread}/subscriptions', 'SubscriptionsController@subscribeToThread');
-Route::delete('/threads/{thread}/subscriptions', 'SubscriptionsController@unsubscribeToThread');
+Route::delete('/threads/{thread}/subscriptions', 'SubscriptionsController@unsubscribeFromThread');
 Route::patch('/comments/{comment}', 'CommentsController@update');
 Route::delete('/comments/{comment}', 'CommentsController@destroy')->name('comments.destroy');
 Route::resource('/channels', 'ChannelsController');

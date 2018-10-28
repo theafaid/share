@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Notifications\ThreadReceivedNewComment;
 
 class Thread extends Model
 {
@@ -20,14 +21,13 @@ class Thread extends Model
         parent::boot();
 
         static::created(function($thread){
-            $thread->subscribeToThread($thread->user_id);
+            $thread->subscribe($thread->user_id);
         });
 
         static::deleting(function($model){
             $model->comments->each->delete();
         });
     }
-
 
     /**
      * @return string
@@ -69,13 +69,27 @@ class Thread extends Model
         return $this->hasMany(Comment::class);
     }
 
-
     /**
      * @param $comment
      * @return Model
      */
-    public function addComment($comment){
-        return $this->comments()->create($comment);
+    public function addComment($body){
+        $comment = $this->comments()->create([
+            'body' => $body,
+            'user_id' => auth()->id()
+        ]);
+
+        $this->notifySubscribers($comment);
+
+        return $comment;
+    }
+
+    protected function notifySubscribers($comment){
+        foreach($this->subscriptions as $subscription){
+            if($subscription->user->user_id != $comment->user_id){
+                $subscription->user->notify(new ThreadReceivedNewComment($comment));
+            }
+        }
     }
 
     /**

@@ -25,7 +25,7 @@ trait Subscribed
      * We check that in SubscriptionsController
      * @param null $userId
      */
-    public function subscribeToThread($userId = null){
+    public function subscribe($userId = null){
         $userId = $userId ?: auth()->id();
         $this->subscriptions()->create([
             'user_id' => $userId,
@@ -37,7 +37,7 @@ trait Subscribed
      * We check that in SubscriptionsController
      * @param null $userId
      */
-    public function unsubscribeFromThread($userId = null){
+    public function unsubscribe($userId = null){
         $userId = $userId ?: auth()->id();
         $this->subscriptions()->where('user_id', $userId)->get()->each->delete();
     }
