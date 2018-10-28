@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Thread;
 use App\Queries\ThreadsFilter;
+
 class ThreadsController extends Controller
 {
 
@@ -120,6 +121,10 @@ class ThreadsController extends Controller
 
             if(request('filter') === 'popular'){
                 return ThreadsFilter::popularThreads($count);
+            }
+
+            if(request('filter') == 'unanswered'){
+                return ThreadsFilter::unansweredThreads($count);
             }
 
         }

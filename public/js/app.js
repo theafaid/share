@@ -15209,7 +15209,7 @@ var render = function() {
             ])
           : _c("div", { staticClass: "alert alert-danger" }, [
               _vm._v("\n            Please "),
-              _c("a", { attrs: { href: "" } }, [_vm._v("Login")]),
+              _c("a", { attrs: { href: "/login" } }, [_vm._v("Login")]),
               _vm._v(" To Add Your Comment !.\n        ")
             ])
       ])

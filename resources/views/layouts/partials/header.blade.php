@@ -38,9 +38,16 @@
 	</style>
 
 	<script>
-		user = {!! json_encode([
-			'id' => auth()->id()
-		]) !!}
+        @auth
+            user = {!! json_encode([
+                'id' => auth()->user()->id
+                ]) !!}
+        @else
+            user = {!! json_encode([
+			'id' => null
+		    ]) !!}
+        @endauth
+
 
 	</script>
 </head>

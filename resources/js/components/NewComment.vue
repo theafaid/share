@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="alert alert-danger" v-else>
-                Please <a href="">Login</a> To Add Your Comment !.
+                Please <a href="/login">Login</a> To Add Your Comment !.
             </div>
         </div>
     </section>

@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Queries;
 use App\Thread;
 use App\User;
+
 class ThreadsFilter
 {
-
     public static function latestThreads($count = 20)
     {
         $data['title'] = "Latest Threads";
@@ -26,6 +27,13 @@ class ThreadsFilter
     {
         $data['title'] = "Popular Threads";
         $data['data'] = Thread::withCount('comments')->orderBy('comments_count', 'desc')->paginate($count);
+
+        return $data;
+    }
+
+    public static function unansweredThreads($count = 20){
+        $data['title'] = "Unanswered Threads";
+        $data['data']  = Thread::where('comments_count',"=", 0)->paginate($count);
 
         return $data;
     }

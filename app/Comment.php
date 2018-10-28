@@ -15,6 +15,18 @@ class Comment extends Model
     protected $withCount = ['likes'];
     protected $appends = ['isLiked'];
 
+    protected static function boot(){
+        parent::boot();
+        // increase comments count on the thread
+        static::created(function($comment){
+            $comment->thread->increment("comments_count");
+        });
+        // decrease comments count on the thread
+        static::deleted(function($comment){
+            $comment->thread->decrement("comments_count");
+        });
+    }
+
     /**
      * @param $value
      * @return string

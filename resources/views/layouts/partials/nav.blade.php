@@ -30,6 +30,7 @@
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="{{route('threads.index')}}">Latest</a>
 							<a class="dropdown-item" href="{{route('threads.index')}}?filter=popular">Popular</a>
+							<a class="dropdown-item" href="{{route('threads.index')}}?filter=unanswered">Unanswered</a>
 						</div>
 					</li>
 

@@ -57,21 +57,12 @@ class ReadThreadsTest extends TestCase
             ->assertSee($threadBySpesificUser->title)
             ->assertDontSee($threadByOther->title);
     }
-//
-//    /** @test */
-//    function a_user_can_filter_threads_by_popularity(){
-//
-//        $threadWithThreeComments = create('App\Thread');
-//        create('App\Comment', ['thread_id' => $threadWithThreeComments->id], 3);
-//
-//        $threadWithTwoComments = create('App\Thread');
-//        create('App\Comment', ['thread_id' => $threadWithTwoComments->id], 2);
-//
-//        $threadWithZeroComments = $this->thread;
-//
-//
-//        $response = $this->getJson("/threads?filter=popular")->json();
-//        $this->assertEquals([0, 2, 3], array_column($response, 'comments_count'));
-//    }
+
+    /** @test */
+    function a_user_can_filter_threads_by_unanswered(){
+        $thread = create('App\Thread');
+        $this->get("/threads?filter=unanswered")
+            ->assertSee($thread->title);
+    }
 
 }

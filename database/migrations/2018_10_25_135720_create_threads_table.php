@@ -21,6 +21,7 @@ class CreateThreadsTable extends Migration
             $table->string('slug');
             $table->text('body');
             $table->string('image')->nullable();
+            $table->integer('comments_count')->default(0);
             $table->timestamps();
         });
     }
