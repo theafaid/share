@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Activity;
 use App\User;
+
 class ActivitiesController extends Controller
 {
     public function show(User $user){

@@ -10,18 +10,17 @@
 <!-- Mobile Specific Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Favicon-->
-<link rel="shortcut icon" href="{{asset('design')}}/img/fav.png">
+<link rel="icon" href="{{asset('design')}}/img/fav.png">
 <!-- Author Meta -->
 <meta name="author" content="Abdulrahman Faid">
 <!-- Meta Description -->
 <meta name="description" content="">
 <!-- Meta Keyword -->
 <meta name="keywords" content="share,knowledge,learn,education,threads,channels,subscribe,experince">
-
 <!-- Site Title -->
 <title>@yield('title', 'Welcome To Share')</title>
 
-<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 	<!--
 	CSS
 	============================================= -->
@@ -38,16 +37,9 @@
 	</style>
 
 	<script>
-        @auth
-            user = {!! json_encode([
-                'id' => auth()->user()->id
-                ]) !!}
-        @else
-            user = {!! json_encode([
-			'id' => null
-		    ]) !!}
-        @endauth
-
+		user = {!! json_encode([
+			'id' => auth()->user() ? auth()->user()->id : null
+			]) !!}
 
 	</script>
 </head>

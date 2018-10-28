@@ -37,7 +37,7 @@
         <div class="active-cat-carusel text-center">
             @foreach($popularThreads as $thread)
                 <div class="item single-cat">
-                    <img src="{{$thread->image()}}" alt="{{$thread->title}}" width="360" height="220">
+                    <img src="{{$thread->imagePath}}" alt="{{$thread->title}}" width="360" height="220">
                     <p reach($latestThreads as $thread)
                        class="date">{{$thread->created_at}}</p>
                     <h4><a href="{{route("threads.show", $thread->slug)}}">{{$thread->title}}</a></h4>
@@ -62,7 +62,7 @@
         <div class="active-cat-carusel text-center">
             @foreach($latestThreads as $thread)
                 <div class="item single-cat">
-                    <img src="{{$thread->image()}}" alt="{{$thread->title}}" width="360" height="220">
+                    <img src="{{$thread->imagePath}}" alt="{{$thread->title}}" width="360" height="220">
                     <p reach($latestThreads as $thread)
                        class="date">{{$thread->created_at}}</p>
                     <h4><a href="{{route("threads.show", $thread->slug)}}">{{$thread->title}}</a></h4>

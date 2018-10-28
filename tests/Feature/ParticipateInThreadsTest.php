@@ -40,8 +40,11 @@ class ParticipateInThreadsTest extends TestCase
 
     /** @test */
     function a_comment_requires_a_body(){
+
         $this->withExceptionHandling()->signIn();
+
         $this->comment['body'] = null;
+
         $this->post($this->path("comments"), $this->comment->toArray())
             ->assertSessionHasErrors('body');
     }
@@ -51,10 +54,12 @@ class ParticipateInThreadsTest extends TestCase
         $this->signIn();
 
         $comment = create('App\Comment', ['user_id' => auth()->id()]);
+
         $response = $this->json('DELETE', "/comments/{$comment->id}");
         $response->assertStatus(204);
 
         $comment = create('App\Comment');
+
         $response = $this->json('DELETE', "/comments/{$comment->id}");
         $response->assertStatus(403);
     }
@@ -65,6 +70,7 @@ class ParticipateInThreadsTest extends TestCase
 
     /** @test */
     function authorized_user_can_update_his_comment(){
+
         $this->signIn();
 
         $comment = create('App\Comment', ['user_id' => auth()->id()]);
@@ -95,6 +101,7 @@ class ParticipateInThreadsTest extends TestCase
 
     /** @test */
     function comment_requires_body_to_be_updated(){
+
         $this->signIn();
 
         $comment = create('App\Comment', ['user_id' => auth()->id()]);

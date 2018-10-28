@@ -12,9 +12,11 @@
 			  <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 			    <ul class="navbar-nav">
 
+					@auth
 					<li class="dropdown">
 						<notification></notification>
 					</li>
+					@endauth
 
 					<li class="dropdown">
 						<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
