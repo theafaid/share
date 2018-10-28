@@ -14354,11 +14354,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         remove: function remove(index) {
-            this.data.splice(index, 1);
+            this.items.splice(index, 1);
             this.$emit('decrease');
         },
         add: function add(data) {
             this.items.push(data);
+            this.$emit('increase');
         }
     }
 });
@@ -14916,6 +14917,7 @@ var render = function() {
             _vm._l(_vm.items, function(comment, index) {
               return _c(
                 "div",
+                { key: comment.id },
                 [
                   _c("comment", {
                     attrs: { data: comment },
@@ -15078,7 +15080,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            body: ""
+            body: "",
+            isDisabled: false
         };
     },
 
@@ -15091,12 +15094,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         post: function post() {
-            return this.body == '' ? null : this.persist();
+            return this.body == '' ? this.avoidPost() : this.persist();
+        },
+        avoidPost: function avoidPost() {
+            this.$toaster.warning("Write a comment before post !");
+            return;
         },
         persist: function persist() {
             var _this = this;
 
-            axios.post(location.pathname + '/comments', { body: this.body }).then(function (response) {
+            axios.post(location.pathname + "/comments", { body: this.body }).then(function (response) {
                 _this.body = '';
                 _this.$toaster.success("Your Comment Has Bee Published");
                 _this.$emit('created', response.data);
@@ -15151,6 +15158,7 @@ var render = function() {
                   "button",
                   {
                     staticClass: "primary-btn mt-20",
+                    attrs: { disabled: _vm.isDisabled },
                     on: {
                       click: function($event) {
                         $event.preventDefault()

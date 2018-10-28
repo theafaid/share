@@ -78,9 +78,14 @@
                                 <section class="comment-sec-area pt-80 pb-80">
                                     <div class="container">
                                         <div class="row flex-column">
-                                            <h5 class="text-uppercase pb-80">{{$thread->comments_count}} {{str_plural('Comment', $thread->comments_count)}}</h5>
+                                            <h5 class="text-uppercase pb-80" v-text="thread.comments_count + ' Comments'"></h5>
                                             <br>
-                                            <comments :data="{{$thread->comments}}" @decrease="thread.comments_count--"></comments>
+                                            <comments
+                                                    :data="{{$thread->comments}}"
+                                                    @increase="thread.comments_count++"
+                                                    @decrease="thread.comments_count--">
+
+                                            </comments>
                                         </div>
                                     </div>
                                 </section>

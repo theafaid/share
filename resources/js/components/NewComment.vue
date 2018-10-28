@@ -6,7 +6,7 @@
             <div class="row flex-row d-flex" v-if="signedIn">
                 <div class="col-lg-12">
                     <textarea v-model="body" class="form-control" placeholder="Your Comment ....."></textarea>
-                    <button class="primary-btn mt-20" @click.prevent="post">Post Comment</button>
+                    <button :disabled="isDisabled" class="primary-btn mt-20" @click.prevent="post">Post Comment</button>
                 </div>
             </div>
             <div class="alert alert-danger" v-else>
@@ -22,7 +22,8 @@
 
         data(){
             return {
-                body: ""
+                body: "",
+                isDisabled: false
             }
         },
 
@@ -33,8 +34,14 @@
         },
 
         methods:{
+
             post(){
-                return this.body == '' ? null : this.persist();
+                return this.body == '' ? this.avoidPost() : this.persist();
+            },
+
+            avoidPost(){
+                this.$toaster.warning("Write a comment before post !");
+                return;
             },
 
             persist(){

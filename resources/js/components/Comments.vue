@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="items.length">
-            <div v-for="(comment, index) in items">
+            <div v-for="(comment, index) in items" :key="comment.id">
                 <comment :data="comment" @deleted="remove(index)"></comment>
             </div>
         </div>
@@ -34,12 +34,14 @@
 
         methods:{
             remove(index){
-                this.data.splice(index, 1);
+                this.items.splice(index, 1);
                 this.$emit('decrease');
             },
 
             add(data){
-                this.items.push(data);
+                 this.items.push(data);
+                 this.$emit('increase');
+
             }
         }
     }
