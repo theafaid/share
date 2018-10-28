@@ -92,10 +92,10 @@ class Thread extends Model
         }
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function likes(){
-        return $this->morphMany('App\Like', 'likable');
+    public function hasUpdatesFor(){
+        if(! auth()->user()) return;
+        $lastSeenTime = cache(sprintf("users.%.visits.%", auth()->id(), $this->id));
+
+        return $this->updated_at->gt($lastSeenTime);
     }
 }

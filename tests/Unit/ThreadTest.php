@@ -39,4 +39,13 @@ class ThreadTest extends TestCase
 
         $this->assertCount(1, $this->thread->comments);
     }
+
+    /** @test */
+    function a_thread_can_check_if_the_authenticated_user_has_read_all_comments(){
+          $this->signIn();
+
+            $thread = create('App\Thread');
+
+            $this->assertTrue($thread->hasUpdatesFor());
+    }
 }

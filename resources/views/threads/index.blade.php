@@ -34,7 +34,13 @@
                                         <img src="{{$thread->imagePath}}" width="197" height="183" alt="{{$thread->title}}">
                                     </div>
                                     <div class="detail">
-                                        <a href="{{route('threads.show', $thread->slug)}}"><h4 class="pb-20">{{$thread->title}}</h4></a>
+                                        <a href="{{route('threads.show', $thread->slug)}}">
+                                            @if($thread->hasUpdatesFor())
+                                                <h4 style="color:#0080ff" class="pb-20">{{$thread->title}}</h4>
+                                            @else
+                                                <h4 class="pb-20">{{$thread->title}}</h4>
+                                            @endif
+                                        </a>
                                         <p>
                                             {{str_limit($thread->body, 200)}}
                                         </p>

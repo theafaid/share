@@ -48,7 +48,7 @@ class ThreadsController extends Controller
     {
         $data = request()->validate([
             'title' => 'required|string|max:255',
-            'body'  => 'required|string',
+            'body'  => 'required|string|min:255',
             'image' => 'image|mimes:jpg,jpeg,png',
             'channel_id' => 'required|numeric|exists:channels,id'
         ]);
@@ -69,6 +69,10 @@ class ThreadsController extends Controller
      */
     public function show(Thread $thread)
     {
+        if(auth()->user()){
+            $cacheKey = sprintf("users.%.visits.%", auth()->id(), $thread->id);
+            cache()->forever($cacheKey, \Carbon\Carbon::now());
+        }
         return view('threads.show', compact('thread'));
     }
 
