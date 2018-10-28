@@ -14317,6 +14317,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Comment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Comment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NewComment__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NewComment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__NewComment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Paginator__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Paginator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Paginator__);
 //
 //
 //
@@ -14333,6 +14335,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+
+
 
 
 
@@ -14340,19 +14348,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     components: {
         'comment': __WEBPACK_IMPORTED_MODULE_0__Comment___default.a,
-        'new-comment': __WEBPACK_IMPORTED_MODULE_1__NewComment___default.a
+        'new-comment': __WEBPACK_IMPORTED_MODULE_1__NewComment___default.a,
+        'paginator': __WEBPACK_IMPORTED_MODULE_2__Paginator___default.a
     },
-
-    props: ['data'],
 
     data: function data() {
         return {
-            items: this.data
+            items: [],
+            paginatorData: []
         };
+    },
+    created: function created() {
+        this.fetch();
     },
 
 
     methods: {
+        fetch: function fetch(page) {
+            axios.get(this.url(page)).then(this.refresh);
+        },
+        url: function url(page) {
+            // page = page ? page : 1 ;
+            if (!page) {
+                var query = location.search.match(/page=(\d)/);
+                page = query ? query[1] : 1;
+            }
+
+            return location.pathname + '/comments?page=' + page;
+        },
+        refresh: function refresh(response) {
+            this.items = response.data.data;
+            this.paginatorData = response.data;
+        },
         remove: function remove(index) {
             this.items.splice(index, 1);
             this.$emit('decrease');
@@ -14914,23 +14941,33 @@ var render = function() {
       _vm.items.length
         ? _c(
             "div",
-            _vm._l(_vm.items, function(comment, index) {
-              return _c(
-                "div",
-                { key: comment.id },
-                [
-                  _c("comment", {
-                    attrs: { data: comment },
-                    on: {
-                      deleted: function($event) {
-                        _vm.remove(index)
+            [
+              _vm._l(_vm.items, function(comment, index) {
+                return _c(
+                  "div",
+                  { key: comment.id },
+                  [
+                    _c("comment", {
+                      attrs: { data: comment },
+                      on: {
+                        deleted: function($event) {
+                          _vm.remove(index)
+                        }
                       }
-                    }
-                  })
-                ],
-                1
-              )
-            })
+                    })
+                  ],
+                  1
+                )
+              }),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c("paginator", {
+                attrs: { data: _vm.paginatorData },
+                on: { updated: _vm.fetch }
+              })
+            ],
+            2
           )
         : _c("div", [
             _c("div", { staticClass: "alert alert-warning" }, [
@@ -14938,7 +14975,7 @@ var render = function() {
             ])
           ]),
       _vm._v(" "),
-      _c("new-comment", { attrs: { data: _vm.data }, on: { created: _vm.add } })
+      _c("new-comment", { on: { created: _vm.add } })
     ],
     1
   )
@@ -15186,6 +15223,252 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-26ff0dca", module.exports)
+  }
+}
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(68)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(70)
+/* template */
+var __vue_template__ = __webpack_require__(71)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-59656db6"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Paginator.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-59656db6", Component.options)
+  } else {
+    hotAPI.reload("data-v-59656db6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(69);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("59e8d11d", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-59656db6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Paginator.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-59656db6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Paginator.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.pagination li a[data-v-59656db6] {\n    border: 1px;\n    margin-left: 0px;\n    color: #707070;\n    padding: 7px 2px;\n    margin: 0px 20px;\n    cursor: pointer;\n}\n.pagination li a[data-v-59656db6]:hover {\n    background-color: transparent;\n    color: #4A90E2;\n    padding-bottom: 2px;\n    border-bottom: 1px solid;\n}\n.pagination li a[data-v-59656db6]:focus {\n    outline: none;\n    background-color: transparent;\n    /*color:#707070;*/\n}\n.pagination li:first-child a[data-v-59656db6], .pagination li:last-child a[data-v-59656db6] {\n    border-radius: 6px;\n    margin: 20px;\n    padding: 6px 12px;\n    font-size: 14px;\n    color: #fff;\n    background: #0080ff\n}\n.pagination li:first-child a[data-v-59656db6]:hover, .pagination li:last-child a[data-v-59656db6]:hover {\n    text-decoration: none !important;\n    color: #fff;\n    background-color: #143361;\n}\n.pagination li:first-child a[data-v-59656db6]:focus, .pagination li:last-child a[data-v-59656db6]:focus {\n    outline: none;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['data'],
+
+    data: function data() {
+        return {
+            prevPageUrl: false,
+            nextPageUrl: false,
+            currentPage: false
+        };
+    },
+    created: function created() {
+        this.prevPageUrl = this.data.prev_page_url;
+        this.nextPageUrl = this.data.next_page_url;
+        this.currentPage = this.data.current_page;
+    },
+
+
+    watch: {
+        data: function data() {
+            this.prevPageUrl = this.data.prev_page_url;
+            this.nextPageUrl = this.data.next_page_url;
+            this.currentPage = this.data.current_page;
+        },
+        currentPage: function currentPage() {
+            this.broadcast(this.currentPage).updateUrl();
+        }
+    },
+
+    computed: {
+        shouldPaginate: function shouldPaginate() {
+            return !!this.nextPageUrl || this.prevPageUrl;
+        }
+    },
+
+    methods: {
+        broadcast: function broadcast(page) {
+            this.$emit('updated', page);
+            return this;
+        },
+        updateUrl: function updateUrl() {
+            history.pushState(null, null, '?page=' + this.currentPage);
+        }
+    }
+});
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.shouldPaginate
+    ? _c("nav", { attrs: { "aria-label": "Page navigation" } }, [
+        _c("ul", { staticClass: "pagination" }, [
+          _vm.prevPageUrl
+            ? _c("li", [
+                _c(
+                  "a",
+                  {
+                    attrs: { "aria-label": "Previous" },
+                    on: {
+                      click: function($event) {
+                        _vm.currentPage--
+                      }
+                    }
+                  },
+                  [_vm._m(0), _vm._v("\n                Prev\n            ")]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.nextPageUrl
+            ? _c("li", [
+                _c(
+                  "a",
+                  {
+                    attrs: { "aria-label": "Next" },
+                    on: {
+                      click: function($event) {
+                        _vm.currentPage++
+                      }
+                    }
+                  },
+                  [
+                    _vm._v("\n                Next\n                "),
+                    _vm._m(1)
+                  ]
+                )
+              ])
+            : _vm._e()
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "aria-hidden": "true" } }, [
+      _c("i", {
+        staticClass: "fa fa-chevron-left",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "aria-hidden": "true" } }, [
+      _c("i", {
+        staticClass: "fa fa-chevron-right",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-59656db6", module.exports)
   }
 }
 

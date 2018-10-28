@@ -8,7 +8,7 @@ class CommentsController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['index']]);
     }
 
 
@@ -17,9 +17,9 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Thread $thread)
     {
-        //
+        return $thread->comments()->latest()->paginate(15);
     }
 
     /**

@@ -34,7 +34,7 @@ class ParticipateInThreadsTest extends TestCase
 
         $this->post($this->path('comments'), $this->comment->toArray());
 
-        $this->get($this->path())
+        $this->get($this->path("comments"))
             ->assertSee($this->comment->body);
    }
 

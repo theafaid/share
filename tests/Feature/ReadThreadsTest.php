@@ -31,8 +31,7 @@ class ReadThreadsTest extends TestCase
     /** @test */
     function a_user_can_read_comments_that_are_associated_with_a_thread(){
         $comment = factory('App\Comment')->create(['thread_id' => $this->thread->id]);
-
-        $response = $this->get("/threads/{$this->thread->slug}");
+        $response = $this->get("/threads/{$this->thread->slug}/comments");
         $response->assertSee($comment->body);
     }
 

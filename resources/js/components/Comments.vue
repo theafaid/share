@@ -1,38 +1,68 @@
 <template>
     <div>
         <div v-if="items.length">
+
             <div v-for="(comment, index) in items" :key="comment.id">
                 <comment :data="comment" @deleted="remove(index)"></comment>
             </div>
+            <hr>
+            <paginator :data="paginatorData" @updated="fetch"></paginator>
+
         </div>
 
         <div v-else>
             <div class="alert alert-warning">No Comments Found In This Thread !</div>
         </div>
 
-        <new-comment :data="data" @created="add"></new-comment>
+        <new-comment @created="add"></new-comment>
     </div>
 </template>
 
 <script>
     import Comment from './Comment'
     import NewComment from './NewComment'
+    import Paginator from './Paginator'
+
     export default{
 
         components:{
             'comment': Comment,
-            'new-comment': NewComment
+            'new-comment': NewComment,
+            'paginator': Paginator
         },
-
-        props: ['data'],
 
         data(){
             return {
-                items: this.data
+                items: [],
+                paginatorData: []
             }
         },
 
+        created(){
+            this.fetch();
+        },
+
         methods:{
+            fetch(page){
+                axios.get(this.url(page))
+                    .then(this.refresh);
+            },
+
+            url(page){
+                // page = page ? page : 1 ;
+                if(!page){
+                    let query = location.search.match(/page=(\d)/);
+                    page = query ? query[1] : 1;
+                }
+
+                return `${location.pathname}/comments?page=${page}`;
+            },
+
+            refresh(response){
+                this.items = response.data.data;
+                this.paginatorData = response.data;
+            },
+
             remove(index){
                 this.items.splice(index, 1);
                 this.$emit('decrease');

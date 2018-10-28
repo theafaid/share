@@ -81,10 +81,8 @@
                                             <h5 class="text-uppercase pb-80" v-text="thread.comments_count + ' Comments'"></h5>
                                             <br>
                                             <comments
-                                                    :data="{{$thread->comments}}"
                                                     @increase="thread.comments_count++"
                                                     @decrease="thread.comments_count--">
-
                                             </comments>
                                         </div>
                                     </div>
