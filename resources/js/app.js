@@ -23,6 +23,7 @@ window.Vue.prototype.authorize = function(handler){
  */
 
 Vue.component('thread', require('./pages/Thread.vue'));
+Vue.component('notification', require('./components/Notification.vue'));
 
 const app = new Vue({
     el: '#app'

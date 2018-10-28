@@ -33,10 +33,9 @@ class ThreadTest extends TestCase
     /** @test */
     function a_thread_can_add_comment(){
 
-        $this->thread->addComment([
-            'body' => 'foobar',
-            'user_id' => 1
-        ]);
+        $this->signIn();
+
+        $this->thread->addComment('foobar');
 
         $this->assertCount(1, $this->thread->comments);
     }

@@ -35,4 +35,6 @@ Route::post('/comments/{comment}/likes', 'LikesController@store')->name("like.st
 Route::delete('/comments/{comment}/likes', 'LikesController@destroy')->name("like.destroy");
 Route::get('/profile/{user}', 'ProfilesController@show')->name('profile');
 Route::get('/activities/{user}', 'ActivitiesController@show')->name('activities');
+Route::get('/notifications', 'NotificationsController@index');
+Route::delete('/notifications/{id}', 'NotificationsController@markAsRead');
 Route::view('test' , 'threads.index');

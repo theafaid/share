@@ -12,7 +12,9 @@
 			  <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 			    <ul class="navbar-nav">
 
-					<notification></notification>
+					<li class="dropdown">
+						<notification></notification>
+					</li>
 
 					<li class="dropdown">
 						<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
