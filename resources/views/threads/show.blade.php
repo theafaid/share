@@ -104,6 +104,12 @@
                                 </div>
                             </div>
 
+                            <div class="single_widget cat_widget">
+                                <h4 class="text-uppercase pb-20">Great ?</h4>
+                                <div>
+                                    <subscribe-thread :data="{{$thread}}"></subscribe-thread>
+                                </div>
+                            </div>
 
                             <div class="single_widget cat_widget">
                                 <h4 class="text-uppercase pb-20">Post Details</h4>

@@ -12,11 +12,16 @@ class Thread extends Model
     protected $guarded = [];
     protected $dates = ['created_at'];
     protected $with = ['channel', 'user'];
-    protected $withCount = ['comments', 'likes'];
-    protected $appends = ['imagePath'];
+    protected $withCount = ['comments', 'likes', 'subscriptions'];
+    protected $appends = ['imagePath', 'isSubscribed'];
 
     protected static function boot(){
         parent::boot();
+
+        static::created(function($thread){
+            $thread->subscribe($thread->user_id);
+        });
+
         static::deleting(function($model){
             $model->comments->each->delete();
         });
@@ -79,5 +84,27 @@ class Thread extends Model
         return $this->morphMany('App\Like', 'likable');
     }
 
+    public function subscriptions(){
+        return $this->morphMany('App\Subscription', 'subscribed');
+    }
+
+    public function getIsSubscribedAttribute(){
+        return $this->subscriptions()->where('user_id', auth()->id())->exists();
+    }
+    public function subscribe($userId = null){
+        $userId = $userId ?: auth()->id();
+        $this->subscriptions()->create([
+            'user_id' => $userId,
+        ]);
+    }
+
+    public function unsubscribe($userId = null){
+        $userId = $userId ?: auth()->id();
+        $this->subscriptions()->where('user_id', $userId)->delete();
+    }
+
+    public function isSubscribed(){
+        return $this->subscriptions()->where('user_id', auth()->id())->exists();
+    }
 
 }

@@ -1,8 +1,11 @@
 <script>
     import Comments from '../components/Comments';
+    import SubscribeThread from '../components/SubscribeThread'
+
     export default{
         components: {
-            'comments': Comments
+            'comments': Comments,
+            'subscribe-thread': SubscribeThread
         },
 
         props: ['data'],

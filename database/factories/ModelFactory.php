@@ -65,3 +65,11 @@ $factory->define(App\Like::class, function (Faker $faker) {
         'likable_type' => 'App\Comment'
     ];
 });
+
+$factory->define(App\Like::class, function (Faker $faker) {
+    return [
+        'user_id' => function(){return factory(App\User::class)->create()->id;},
+        'likable_id' => function(){return factory(App\Thread::class)->create()->id;},
+        'likable_type' => 'App\Comment'
+    ];
+});
