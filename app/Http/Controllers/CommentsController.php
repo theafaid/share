@@ -39,11 +39,14 @@ class CommentsController extends Controller
             'body' => 'required|string|max:1000'
         ]);
 
-        $thread->addComment([
+        $comment = $thread->addComment([
             'user_id' => auth()->id(),
             'body' => request('body')
         ]);
 
+        if(request()->expectsJson()){
+            return $comment->load('user');
+        }
         return back();
     }
 

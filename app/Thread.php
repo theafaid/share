@@ -63,12 +63,13 @@ class Thread extends Model
         return $this->hasMany(Comment::class);
     }
 
+
     /**
-     * Create New Comment on a Thread
      * @param $comment
+     * @return Model
      */
     public function addComment($comment){
-        $this->comments()->create($comment);
+        return $this->comments()->create($comment);
     }
 
     /**

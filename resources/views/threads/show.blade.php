@@ -85,30 +85,6 @@
                                     </div>
                                 </section>
                                 <!-- End comment-sec Area -->
-
-                                <!-- Start commentform Area -->
-                                <section class="commentform-area  pb-120 pt-80 mb-100">
-                                    <div class="container">
-                                        @auth
-                                            <h5 class="text-uppercas pb-50">Leave a Comment</h5>
-                                            <div class="row flex-row d-flex">
-                                                <div class="col-lg-12">
-                                                    <form action="{{route('comments.store', $thread->slug)}}" method="POST">
-                                                        @csrf
-                                                        <textarea name="body" class="form-control" placeholder="Your Comment ....."></textarea>
-                                                        <button type="submit" class="primary-btn mt-20">Post Comment</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="alert alert-danger">
-                                                Please <a href="{{route('login')}}">Login</a> To Add Your Comment !.
-                                            </div>
-                                        @endauth
-                                    </div>
-                                </section>
-                                <!-- End commentform Area -->
-
                             </div>
                         </div>
                         <div class="col-lg-4 sidebar-area ">

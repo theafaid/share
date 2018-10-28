@@ -1,6 +1,7 @@
 <template>
     <button class="genric-btn like-btn" :class="classes" @click.prevent="like()">
         <i class="fa fa-thumbs-o-up"></i>
+        ( {{likesCount}} )
     </button>
 </template>
 
@@ -10,7 +11,8 @@
 
         data(){
             return {
-                isLiked: this.data.isLiked
+                isLiked: this.data.isLiked,
+                likesCount: this.data.likes_count ? this.data.likes_count : 0
             }
         },
 
@@ -20,6 +22,7 @@
             }
         },
 
+
         methods:{
             like(){
                 ! this.isLiked ? this.likeComment() : this.unlikeComment();
@@ -27,10 +30,12 @@
             },
 
             likeComment(){
+                this.likesCount++;
                 axios.post(`/comments/${this.data.id}/likes`);
             },
 
             unlikeComment(){
+                this.likesCount--;
                 axios.delete(`/comments/${this.data.id}/likes`);
             }
         }

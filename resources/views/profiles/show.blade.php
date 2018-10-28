@@ -37,7 +37,7 @@
                                         <div class="date">
                                             <span>{{$thread->created_at}}</span>
                                         </div>
-                                        <img src="{{$thread->image()}}" width="197" height="183" alt="{{$thread->title}}">
+                                        <img src="{{$thread->imagePath}}" width="197" height="183" alt="{{$thread->title}}">
                                     </div>
                                     <div class="detail">
                                         <a href="{{route('threads.show', $thread->slug)}}"><h4 class="pb-20">{{$thread->title}}</h4></a>
