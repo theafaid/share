@@ -27,6 +27,7 @@ class ProfilesController extends Controller
         if(request()->has('password')){
             auth()->user()->password = bcrypt($data['password']);
         }
+        auth()->user()->save();
 
         session()->flash('success', 'Your Profile Updated Successfully');
         return back();

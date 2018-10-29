@@ -45,7 +45,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Password <small>(If you don't to update your password just leave it.)</small></label>
+                                    <label>Password <small>(If you don't want to update your password just leave it.)</small></label>
                                     <input class="form-control" type="password" name="password">
                                 </div>
 
