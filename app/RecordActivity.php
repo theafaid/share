@@ -26,6 +26,11 @@ trait RecordActivity{
     }
 
 
+    /**
+     * Record an activity
+     * @param $event
+     * @throws \ReflectionException
+     */
     protected function recordActivity($event){
         $this->activities()->create([
             'user_id' => auth()->id(),

@@ -43,6 +43,20 @@ class User extends Authenticatable
     }
 
     /**
+     * @return string
+     */
+    public function getImagePathAttribute(){
+        return $this->image ? "/storage/{$this->image}" : "/design/img/default/avatar.png";
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function lastComment(){
+        return $this->hasOne('App\Comment')->latest();
+    }
+
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
@@ -50,12 +64,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token', 'email'
     ];
-
-    public function getImagePathAttribute(){
-        return $this->image ? "/storage/{$this->image}" : "/design/img/default/avatar.png";
-    }
-
-    public function lastComment(){
-        return $this->hasOne('App\Comment')->latest();
-    }
 }

@@ -17,6 +17,9 @@ class Subscription extends Model
         return $this->morphTo();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user(){
         return $this->belongsTo('App\User');
     }

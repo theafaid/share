@@ -3,6 +3,11 @@ namespace App\Inspections;
 
 class InvalidKeywords
 {
+    /**
+     * Detect invalid keywords
+     * @param $body
+     * @throws \Exception
+     */
     public function detect($body){
         $invalidKeywords = [
             'dog',

@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Events\NewCommentAdded;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
@@ -10,6 +9,7 @@ class Thread extends Model
     use Likable;
     use Subscribed;
     use RecordActivity;
+    use Commentable;
 
     protected $guarded = [];
     protected $dates = ['created_at'];
@@ -19,11 +19,11 @@ class Thread extends Model
 
     protected static function boot(){
         parent::boot();
-
+        // make the creator of the thread as subscriber
         static::created(function($thread){
             $thread->subscribe($thread->user_id);
         });
-
+        // delete all commented which assosiated with the deleted thread
         static::deleting(function($model){
             $model->comments->each->delete();
         });
@@ -41,7 +41,8 @@ class Thread extends Model
      * @return string
      */
     public function getCreatedAtAttribute($value){
-        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)->diffForHumans();
+        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)
+            ->diffForHumans();
     }
 
     /**
@@ -52,6 +53,9 @@ class Thread extends Model
     }
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function channel(){
         return $this->belongsTo('App\Channel');
     }
@@ -63,28 +67,10 @@ class Thread extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Check if the thread has any update for the visitor scince
+     * his last visit
+     * @throws \Exception
      */
-    public function comments(){
-        return $this->hasMany(Comment::class);
-    }
-
-    /**
-     * @param $body
-     * @param null $userId
-     * @return Model
-     */
-    public function addComment($body, $userId = null){
-        $comment = $this->comments()->create([
-            'body' => $body,
-            'user_id' => $userId ?: auth()->id()
-        ]);
-
-        event(new NewCommentAdded($comment));
-
-        return $comment;
-    }
-
     public function hasUpdatesFor(){
         if(! auth()->user()) return;
         $lastSeenTime = cache(sprintf("users.%.visits.%", auth()->id(), $this->id));

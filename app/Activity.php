@@ -12,10 +12,16 @@ class Activity extends Model
         return $this->morphTo();
     }
 
+    /**
+     * Get specific user activities
+     * @param $user
+     * @return mixed
+     */
     public static function feed($user){
         return static::where('user_id', $user->id)
             ->with('subject')
             ->latest()
+            ->take(7)
             ->get()
             ->groupBy(function($activity){
                 return $activity->created_at->format('Y-m-d | H:i');

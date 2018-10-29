@@ -11,6 +11,11 @@ class LikesController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * A user must only like a comment once
+     * @param Comment $comment
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     */
     public function store(Comment $comment){
         if(! $comment->likes()->where('user_id', auth()->id())->exists()){
         	$comment->like();
@@ -23,6 +28,10 @@ class LikesController extends Controller
         return back();
     }
 
+    /**
+     * @param Comment $comment
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     */
     public function destroy(Comment $comment){
         if($comment->likes()->where(['user_id' => auth()->id()])->exists()){
             $comment->unlike();

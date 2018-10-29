@@ -27,6 +27,11 @@ class SubscriptionsController extends Controller
 
     }
 
+    /**
+     * A user may unfollow a thread that he was subscribed
+     * @param Thread $thread
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function unsubscribeFromThread(Thread $thread){
         $thread->isSubscribed ? $thread->unsubscribe() : '';
 

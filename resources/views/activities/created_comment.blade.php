@@ -6,6 +6,6 @@
     @endslot
 
     @slot('body')
-        {{str_limit($activity->subject->body, 300)}}
+        {!! str_limit($activity->subject->body, 300) !!}
     @endslot
 @endcomponent

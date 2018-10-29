@@ -29,15 +29,7 @@ class Comment extends Model
     }
 
     /**
-     * @param $value
-     * @return string
-     */
-//    public function getCreatedAtAttribute($value){
-//        return $value;
-////        return Carbon::createFromFormat('Y-m-d H:i:s', $value)->diffForHumans();
-//    }
-
-    /**
+     * Get the path of the comment
      * @return string
      */
     public function path(){
@@ -65,6 +57,12 @@ class Comment extends Model
         return $this->created_at->gt(Carbon::now()->subMinute());
     }
 
+    /**
+     * If the body of the comment has a mentioned users
+     * it well replace all mentioned users to be a link
+     * that refer to them profile
+     * @param $value
+     */
     public function setBodyAttribute($value){
         $this->attributes['body'] =
             preg_replace('/\@([\w]+)/', '<a href="/profile/$1">$0</a>', $value);

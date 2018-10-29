@@ -4,8 +4,8 @@ namespace App\Listeners;
 
 use App\Events\NewCommentAdded;
 use App\Notifications\ThreadReceivedNewComment;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+//use Illuminate\Queue\InteractsWithQueue;
+//use Illuminate\Contracts\Queue\ShouldQueue;
 
 class NotifyThreadSubscribers
 {
@@ -27,7 +27,10 @@ class NotifyThreadSubscribers
      */
     public function handle(NewCommentAdded $event)
     {
+        // Notify all thread subscriptions users
         foreach($event->comment->thread->subscriptions as $subscription){
+
+            // User must be the creater of the comment to be notified
             if($subscription->user->id != $event->comment->user_id){
                 $subscription->user->notify(new ThreadReceivedNewComment($event->comment));
             }

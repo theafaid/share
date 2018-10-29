@@ -26,9 +26,13 @@ class FreeSpam implements Rule
     public function passes($attribute, $value)
     {
         try{
+
             (new Spam())->detect($value);
-        }catch(\Exception $ex){
+
+        } catch(\Exception $ex){
+
             return false;
+
         }
 
         return true;
@@ -41,6 +45,6 @@ class FreeSpam implements Rule
      */
     public function message()
     {
-        return 'Your Reply Contains Spam Or You Held Key Down !!';
+        return 'Your Reply Contains Spam Or You Held a Key Down !!';
     }
 }

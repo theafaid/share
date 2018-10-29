@@ -10,10 +10,18 @@ class NotificationsController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Get authenticated user unread notifications
+     * @return mixed
+     */
     public function index(){
         return auth()->user()->unreadNotifications;
     }
 
+    /**
+     * Mark a notification as read
+     * @param $id
+     */
     public function markAsRead($id){
         auth()->user()->notifications()->find($id)->markAsRead();
     }

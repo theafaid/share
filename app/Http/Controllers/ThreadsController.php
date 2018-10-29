@@ -16,7 +16,7 @@ class ThreadsController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
+     * Get Threads by [latest, popular, unanswered]
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -43,7 +43,6 @@ class ThreadsController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
      */
     public function store()
     {
@@ -54,6 +53,7 @@ class ThreadsController extends Controller
             'channel_id' => 'required|numeric|exists:channels,id'
         ]);
 
+        // Upload a thread image
         $data['image'] = request()->hasFile('image') ?
                             request()->file('image')->store('threads') : null ;
 
@@ -74,6 +74,7 @@ class ThreadsController extends Controller
     public function show(Thread $thread)
     {
         if(auth()->user()){
+            // Cache must have that user visited thread when he show a thread
             $cacheKey = sprintf("users.%.visits.%", auth()->id(), $thread->id);
             cache()->forever($cacheKey, \Carbon\Carbon::now());
         }
@@ -121,22 +122,26 @@ class ThreadsController extends Controller
 
     protected function getThreads($count = null){
 
+        // Get threads by spesific user
         if(request()->has('by')){
             return ThreadsFilter::bySpecificUser(request('by'), $count);
         }
 
         if(request()->has('filter')){
 
+            // Filter threads by popularity
             if(request('filter') === 'popular'){
                 return ThreadsFilter::popularThreads($count);
             }
 
+            // Filter threads by unanswered
             if(request('filter') == 'unanswered'){
                 return ThreadsFilter::unansweredThreads($count);
             }
 
         }
 
+        // Get latest threads
         return ThreadsFilter::latestThreads($count);
     }
 }

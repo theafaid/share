@@ -7,6 +7,8 @@ use App\Notifications\UserHasLikedYourComment;
 trait Likable
 {
     protected static function bootLikable(){
+        // when the model is delete
+        // all likes in this model must be deleted also
         static::deleting(function($model){
             $model->likes->each->delete();
         });
@@ -31,7 +33,6 @@ trait Likable
         if($like->user_id == $this->user_id) return ;
         $this->user->notify(new UserHasLikedYourComment($like));
     }
-
 
     /**
      * Remove Like from Thread or Comment
