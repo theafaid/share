@@ -17782,6 +17782,7 @@ window.Vue.prototype.authorize = function (handler) {
  */
 
 Vue.component('thread', __webpack_require__(166));
+Vue.component('UserAvatarForm', __webpack_require__(213));
 Vue.component('notification', __webpack_require__(203));
 
 var app = new Vue({
@@ -31468,7 +31469,7 @@ var render = function() {
                 attrs: {
                   width: "30",
                   height: "30",
-                  src: _vm.data.user.imagePath,
+                  src: _vm.data.user.avatarPath,
                   alt: _vm.data.user.username
                 }
               })
@@ -51089,6 +51090,190 @@ Popper.Defaults = Defaults;
 })));
 //# sourceMappingURL=bootstrap.js.map
 
+
+/***/ }),
+/* 213 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(214)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(216)
+/* template */
+var __vue_template__ = __webpack_require__(217)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-c43229da"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/UserAvatarForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c43229da", Component.options)
+  } else {
+    hotAPI.reload("data-v-c43229da", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 214 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(215);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("333dc0d4", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c43229da\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UserAvatarForm.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c43229da\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UserAvatarForm.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 215 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 216 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['data'],
+
+    data: function data() {
+        return {
+            avatar: this.data
+        };
+    },
+
+
+    methods: {
+        uploadAvatar: function uploadAvatar(e) {
+            var _this = this;
+
+            if (e.target.files.length) {
+                // there is selected image
+                var avatar = e.target.files[0];
+
+                var reader = new FileReader();
+
+                reader.readAsDataURL(avatar);
+
+                reader.onload = function (e) {
+
+                    _this.avatar = e.target.result;
+                    _this.$toaster.success("Your Profile Picture Has Beed Updated Successfully");
+                };
+                // persist to the server
+                this.persist(avatar);
+            }
+        },
+        persist: function persist(avatar) {
+
+            var data = new FormData();
+
+            data.append('avatar', avatar);
+
+            axios.post("/api/users/avatar", data);
+        }
+    }
+});
+
+/***/ }),
+/* 217 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "input-group stylish-input-group text-center" }, [
+      _c("img", {
+        staticStyle: { margin: "auto" },
+        attrs: { src: _vm.avatar, width: "150", height: "150" }
+      }),
+      _c("br")
+    ]),
+    _c("hr"),
+    _vm._v(" "),
+    _c("input", {
+      staticClass: "form-control",
+      attrs: { type: "file", accept: "image/*" },
+      on: { change: _vm.uploadAvatar }
+    })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c43229da", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

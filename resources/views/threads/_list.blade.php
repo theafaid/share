@@ -31,7 +31,7 @@
 
             By:
             <a href="{{route('profile', $thread->user->username)}}">{{$thread->user->username}}</a>
-            <img width="30" height="30" src="{{$thread->user->imagePath}}" width="197" height="183" alt="{{$thread->user->username}}">
+            <img width="30" height="30" src="{{$thread->user->avatarPath}}" width="197" height="183" alt="{{$thread->user->username}}">
 
         </p>
         </p>

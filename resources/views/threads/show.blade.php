@@ -46,7 +46,7 @@
                                                 <h3 v-text="thread.created_at"></h3>
                                             </div>
                                             <div class="user-img">
-                                                <img :src="thread.user.imagePath" :alt="thread.user.username" width="30" height="30">
+                                                <img :src="thread.user.avatarPath" :alt="thread.user.username" width="30" height="30">
                                             </div>
                                         </div>
                                     </div>

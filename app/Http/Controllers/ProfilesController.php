@@ -39,6 +39,7 @@ class ProfilesController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(User $user){
+
         return view('profiles.show', [
             'title' => "\"{$user->username}\" Profile",
             'profileUser' => $user,

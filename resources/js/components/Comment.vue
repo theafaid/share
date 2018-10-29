@@ -3,7 +3,7 @@
         <div class="single-comment justify-content-between d-flex">
             <div class="user justify-content-between d-flex">
                 <div class="thumb">
-                <img width="30" height="30" :src="data.user.imagePath" :alt="data.user.username">
+                <img width="30" height="30" :src="data.user.avatarPath" :alt="data.user.username">
             </div>
                 <div class="desc">
                     <h5><a :href="'/profile/'+ data.user.username">{{data.user.username}}</a></h5>
