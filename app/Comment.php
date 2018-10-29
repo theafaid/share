@@ -58,8 +58,15 @@ class Comment extends Model
         return $this->belongsTo('App\Thread');
     }
 
+    /**
+     * @return mixed
+     */
     public function wasJustPublished(){
         return $this->created_at->gt(Carbon::now()->subMinute());
     }
+
+//    public function setBodyAttribute($value){
+//
+//    }
 
 }

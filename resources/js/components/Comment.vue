@@ -7,7 +7,7 @@
             </div>
                 <div class="desc">
                     <h5><a :href="'/profile/'+ data.user.username">{{data.user.username}}</a></h5>
-                    <p class="date">{{data.created_at}}</p>
+                    <p class="date">{{createdAt(this.data.created_at)}}</p>
                     <p class="comment" v-if="! editing">
                         {{body}}
                     </p>
@@ -44,6 +44,7 @@
 
 
 <script>
+    import moment from 'moment';
     import LikeComment from './LikeComment';
 
     export default {
@@ -67,14 +68,19 @@
                 return !! user.id;
             },
 
+
+
             canUpdate(){
                return this.authorize(user => this.data.user_id == user.id);
             }
         },
 
-
-
         methods:{
+
+            createdAt($time){
+                return moment($time).fromNow();
+            },
+
             update(){
                 // old body will work if user has update his comment once
                 // and he want to update it again but he write a spam comment
