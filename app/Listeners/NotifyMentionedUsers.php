@@ -28,7 +28,7 @@ class NotifyMentionedUsers
      */
     public function handle(NewCommentAdded $event)
     {
-        preg_match_all('/\@([^\s^\d^\.]+)/', $event->comment->body, $matches);
+        preg_match_all('/\@([\w]+)/', $event->comment->body, $matches);
         foreach($matches[1] as $username){
             $user = User::where('username', $username)->first();
             if($user && $username != $event->comment->user->username){

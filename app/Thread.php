@@ -70,7 +70,8 @@ class Thread extends Model
     }
 
     /**
-     * @param $comment
+     * @param $body
+     * @param null $userId
      * @return Model
      */
     public function addComment($body, $userId = null){
@@ -81,30 +82,8 @@ class Thread extends Model
 
         event(new NewCommentAdded($comment));
 
-//        $this->notifySubscribers($comment);
-//        $this->notifyMentiondUsers($comment);
-
         return $comment;
     }
-
-//    protected function notifySubscribers($comment){
-//        foreach($this->subscriptions as $subscription){
-//            if($subscription->user->id != $comment->user_id){
-//                $subscription->user->notify(new ThreadReceivedNewComment($comment));
-//            }
-//        }
-//    }
-
-//    protected function notifyMentiondUsers($comment){
-//        preg_match_all('/\@([^\s^\d^\.]+)/', $comment->body, $matches);
-//
-//        foreach($matches[1] as $username){
-//            $user = User::where('username', $username)->first();
-//            if($user && $username != $comment->user->username){
-//                $user->notify(new YouWereMentioned($comment));
-//            }
-//        }
-//    }
 
     public function hasUpdatesFor(){
         if(! auth()->user()) return;

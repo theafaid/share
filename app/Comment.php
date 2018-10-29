@@ -65,8 +65,10 @@ class Comment extends Model
         return $this->created_at->gt(Carbon::now()->subMinute());
     }
 
-//    public function setBodyAttribute($value){
-//
-//    }
+    public function setBodyAttribute($value){
+        $this->attributes['body'] =
+            preg_replace('/\@([\w]+)/', '<a href="/profile/$1">$0</a>', $value);
+
+    }
 
 }

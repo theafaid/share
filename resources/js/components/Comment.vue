@@ -8,9 +8,7 @@
                 <div class="desc">
                     <h5><a :href="'/profile/'+ data.user.username">{{data.user.username}}</a></h5>
                     <p class="date">{{createdAt(this.data.created_at)}}</p>
-                    <p class="comment" v-if="! editing">
-                        {{body}}
-                    </p>
+                    <p class="comment" v-if="! editing" v-html="body"> </p>
                     <div id="edit-comment-container" v-else>
                         <textarea class="form-control" v-model="body"></textarea><br/>
                         <p class="float-right">

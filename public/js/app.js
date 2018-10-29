@@ -14541,8 +14541,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -14836,13 +14834,10 @@ var render = function() {
               ]),
               _vm._v(" "),
               !_vm.editing
-                ? _c("p", { staticClass: "comment" }, [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.body) +
-                        "\n                "
-                    )
-                  ])
+                ? _c("p", {
+                    staticClass: "comment",
+                    domProps: { innerHTML: _vm._s(_vm.body) }
+                  })
                 : _c("div", { attrs: { id: "edit-comment-container" } }, [
                     _c("textarea", {
                       directives: [
