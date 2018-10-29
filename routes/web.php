@@ -20,7 +20,8 @@ Route::get('/', function () {
     ]);
 });
 
-Auth::routes();
+Auth::routes(['verify' => 'true']);
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/threads', 'ThreadsController');
@@ -41,6 +42,8 @@ Route::get('/api/users', 'Api\UsersController@index');
 
 Route::post('/api/users/avatar', 'Api\UsersController@storeAvatar');
 
-Route::get('/myprofile', 'ProfilesController@index')->name('myprofile');
-Route::patch('/myprofile', 'ProfilesController@updateProfileData')->name('myprofile');
+Route::group(['middleware' => 'verified'], function(){
+    Route::get('/myprofile', 'ProfilesController@index')->name('myprofile');
+    Route::patch('/myprofile', 'ProfilesController@updateProfileData')->name('myprofile');
+});
 Route::view('test' , 'threads.index');

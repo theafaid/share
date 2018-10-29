@@ -66,5 +66,15 @@
 			  </div>						
 		</div>
 	</nav>
+
+	@auth
+		@if(auth()->user() && ! auth()->user()->hasVerifiedEmail())
+			<div class="alert alert-danger" style="margin:0">
+				Please Verify Your Email Address To Start Create Threads and Edit Your Profile .. 
+				<a href="/email/resend">Click Here</a>
+			</div>
+		@endif
+	@endauth
 </header>
 <!-- End Header Area -->
+

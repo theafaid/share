@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row justify-content-between align-items-center d-flex">
                 <div class="col-lg-8 top-left">
-                    <h1 class="text-white mb-20">[ {{$title}} ]</h1>
+                    <h1 class="text-white mb-20"> {{$title}} </h1>
                 </div>
             </div>
         </div>
