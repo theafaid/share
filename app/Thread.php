@@ -100,6 +100,9 @@ class Thread extends Model
         ]));
     }
 
+    /**
+     * @return array
+     */
     public function getTrending(){
         $trending = Redis::zrevrange('trending_threads', 0, 6);
         return array_map('json_decode', $trending);

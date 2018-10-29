@@ -16,7 +16,8 @@ class ChannelsController extends Controller
         return view('threads.index',
             [
                 'title'   => "{$channel->name} Threads",
-                'threads' => $channel->threads()->paginate(20)
+                'threads' => $channel->threads()->paginate(20),
+                'trending' => (new \App\Thread)->getTrending()
             ]);
     }
 

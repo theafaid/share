@@ -17,7 +17,6 @@ class TrendingThreadsTest extends TestCase
 
         Redis::del('trending_threads');
 
-
         $thread = create('App\Thread');
 
         $this->call("GET", "/threads/{$thread->slug}");
