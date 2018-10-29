@@ -61,29 +61,15 @@
 
 
                         <div class="single_widget cat_widget">
-                            <h4 class="text-uppercase pb-20">post categories</h4>
+                            <h4 class="text-uppercase pb-20">Trending Threads</h4>
                             <ul>
-                                <li>
-                                    <a href="#">Technology <span>37</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Lifestyle <span>37</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Fashion <span>37</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Art <span>37</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Food <span>37</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Architecture <span>37</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Adventure <span>37</span></a>
-                                </li>
+                                @forelse($trending as $thread)
+                                    <li>
+                                        <a href="{{$thread->link}}">{{$thread->title}}</a>
+                                    </li>
+                                @empty
+                                    <div class="alert alert-warning">No Trending Threads</div>
+                                @endforelse
                             </ul>
                         </div>
 

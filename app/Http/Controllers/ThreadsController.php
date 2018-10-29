@@ -29,7 +29,8 @@ class ThreadsController extends Controller
 
         return view('threads.index', [
             'title'   => $data['title'],
-            'threads' => $data['data']
+            'threads' => $data['data'],
+            'trending' => (new Thread())->getTrending()
         ]);
     }
 
@@ -73,11 +74,10 @@ class ThreadsController extends Controller
      */
     public function show(Thread $thread)
     {
-        if(auth()->user()){
-            // Cache must have that user visited thread when he show a thread
-            $cacheKey = sprintf("users.%.visits.%", auth()->id(), $thread->id);
-            cache()->forever($cacheKey, \Carbon\Carbon::now());
-        }
+        $thread->saveVisitInCache();
+
+        $thread->arrangeTrending();
+
         return view('threads.show', compact('thread'));
     }
 

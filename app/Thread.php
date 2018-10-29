@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Redis;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
@@ -41,7 +43,7 @@ class Thread extends Model
      * @return string
      */
     public function getCreatedAtAttribute($value){
-        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)
+        return Carbon::createFromFormat('Y-m-d H:i:s', $value)
             ->diffForHumans();
     }
 
@@ -73,8 +75,33 @@ class Thread extends Model
      */
     public function hasUpdatesFor(){
         if(! auth()->user()) return;
+
         $lastSeenTime = cache(sprintf("users.%.visits.%", auth()->id(), $this->id));
 
         return $this->updated_at->gt($lastSeenTime);
+    }
+
+    public function saveVisitInCache(){
+        if(auth()->user()){
+            // Cache must have that user visited thread when he show a thread
+            $cacheKey = sprintf("users.%.visits.%", auth()->id(), $this->id);
+            cache()->forever($cacheKey, Carbon::now());
+        }
+    }
+
+    /**
+     * This function for arrange trending threads by visits
+     * it increment the key by one every single visit
+     */
+    public function arrangeTrending(){
+        Redis::zincrby('trending_threads', 1, json_encode([
+            'title' => $this->title,
+            'link'  => "/threads/{$this->slug}"
+        ]));
+    }
+
+    public function getTrending(){
+        $trending = Redis::zrevrange('trending_threads', 0, 6);
+        return array_map('json_decode', $trending);
     }
 }
