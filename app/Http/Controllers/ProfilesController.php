@@ -24,7 +24,7 @@ class ProfilesController extends Controller
 
 
         auth()->user()->username = $data['username'];
-        if(request()->has('password')){
+        if(request()->has('password') && request('password') != ''){
             auth()->user()->password = bcrypt($data['password']);
         }
         auth()->user()->save();
