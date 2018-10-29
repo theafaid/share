@@ -54,4 +54,8 @@ class User extends Authenticatable
     public function getImagePathAttribute(){
         return $this->image ? "/storage/{$this->image}" : "/design/img/default/avatar.png";
     }
+
+    public function lastComment(){
+        return $this->hasOne('App\Comment')->latest();
+    }
 }

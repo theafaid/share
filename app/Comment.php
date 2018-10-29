@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
@@ -31,9 +32,10 @@ class Comment extends Model
      * @param $value
      * @return string
      */
-    public function getCreatedAtAttribute($value){
-        return \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $value)->diffForHumans();
-    }
+//    public function getCreatedAtAttribute($value){
+//        return $value;
+////        return Carbon::createFromFormat('Y-m-d H:i:s', $value)->diffForHumans();
+//    }
 
     /**
      * @return string
@@ -54,6 +56,10 @@ class Comment extends Model
      */
     public function thread(){
         return $this->belongsTo('App\Thread');
+    }
+
+    public function wasJustPublished(){
+        return $this->created_at->gt(Carbon::now()->subMinute());
     }
 
 }

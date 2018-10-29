@@ -22,4 +22,13 @@ class CommentTest extends TestCase
     function it_has_an_thread(){
         $this->assertInstanceOf('App\Thread', $this->comment->thread);
     }
+
+    /** @test */
+    function a_comment_knows_if_it_was_just_published(){
+
+        $comment = create("App\Comment");
+
+        $this->assertTrue($comment->wasJustPublished());
+
+    }
 }

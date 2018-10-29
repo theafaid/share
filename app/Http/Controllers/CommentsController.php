@@ -36,6 +36,10 @@ class CommentsController extends Controller
 
     public function store(Thread $thread)
     {
+        if(\Gate::denies('create', new Comment())){
+            return response("Please wait for a minute before create new comment", 429);
+        }
+
         request()->validate([
             'body' => ['required', 'string', 'max:1000', new FreeSpam()]
         ]);
@@ -74,6 +78,7 @@ class CommentsController extends Controller
     public function update(Comment $comment)
     {
         $this->authorize('update', $comment);
+//        $this->authorize('create', new $comment);
 
         $data = request()->validate([
             'body' => ['required', 'string', 'max:1000', new FreeSpam()]

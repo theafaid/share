@@ -109,4 +109,21 @@ class ParticipateInThreadsTest extends TestCase
         $this->patch("/comments/{$comment->id}")
             ->assertSessionHasErrors("body");
     }
+
+    /** @test */
+    function a_user_may_publish_only_one_comment_per_minute(){
+
+        $this->signIn();
+
+        $thread = create('App\Thread');
+
+        $comment = make('App\Comment', ['user_id' => auth()->id()]);
+
+        $this->post("/threads/{$thread->slug}/comments", $comment->toArray());
+        $this->assertCount(1, $thread->comments);
+
+        $this->post("/threads/{$thread->slug}/comments", $comment->toArray())
+            ->assertStatus(429);
+
+    }
 }
