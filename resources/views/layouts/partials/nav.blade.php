@@ -54,6 +54,7 @@
 								<a class="dropdown-item" href="{{route('threads.create')}}">Create New Thread</a>
 								<a class="dropdown-item" href="/threads?by={{auth()->user()->username}}">My Threads</a>
 								<a class="dropdown-item" href="{{route('activities', auth()->user()->username)}}">My Activities</a>
+								<a class="dropdown-item" href="{{route('myprofile')}}">Profile Settings</a>
 								<a class="dropdown-item" href="{{route('logout')}}">Logout</a>
 							</div>
 						</li>

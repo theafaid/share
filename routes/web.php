@@ -38,4 +38,6 @@ Route::get('/activities/{user}', 'ActivitiesController@show')->name('activities'
 Route::get('/notifications', 'NotificationsController@index');
 Route::delete('/notifications/{id}', 'NotificationsController@markAsRead');
 Route::get('/api/users', 'Api\UsersController@index');
+Route::get('/myprofile', 'ProfilesController@index')->name('myprofile');
+Route::patch('/myprofile', 'ProfilesController@updateProfileData')->name('myprofile');
 Route::view('test' , 'threads.index');
