@@ -37,4 +37,5 @@ Route::get('/profile/{user}', 'ProfilesController@show')->name('profile');
 Route::get('/activities/{user}', 'ActivitiesController@show')->name('activities');
 Route::get('/notifications', 'NotificationsController@index');
 Route::delete('/notifications/{id}', 'NotificationsController@markAsRead');
+Route::get('/api/users', 'Api\UsersController@index');
 Route::view('test' , 'threads.index');

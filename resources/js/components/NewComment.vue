@@ -5,7 +5,7 @@
             <h5 class="text-uppercas pb-50">Leave a Comment</h5>
             <div class="row flex-row d-flex" v-if="signedIn">
                 <div class="col-lg-12">
-                    <textarea v-model="body" class="form-control" placeholder="Your Comment ....."></textarea>
+                    <textarea id="body" v-model="body" class="form-control" placeholder="Your Comment ....."></textarea>
                     <button :disabled="isDisabled" class="primary-btn mt-20" @click.prevent="post">Post Comment</button>
                 </div>
             </div>
@@ -18,8 +18,10 @@
 </template>
 
 <script>
-    export default{
+    import 'jquery.caret';
+    import 'at.js';
 
+    export default{
         data(){
             return {
                 body: "",
@@ -31,6 +33,19 @@
             signedIn(){
                 return !! user.id;
             }
+        },
+
+        mounted(){
+            $('#body').atwho({
+                at: "@",
+                callbacks: {
+                    remoteFilter: function(query, callback) {
+                        $.getJSON("/api/users", {username: query}, function(data) {
+                            callback(data);
+                        });
+                    }
+                }
+            });
         },
 
         methods:{

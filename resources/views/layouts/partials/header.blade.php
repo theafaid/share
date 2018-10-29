@@ -29,6 +29,7 @@
 	<link rel="stylesheet" href="{{asset('design')}}/css/bootstrap.css">
 	<link rel="stylesheet" href="{{asset('design')}}/css/owl.carousel.css">
 	<link rel="stylesheet" href="{{asset('design')}}/css/main.css">
+	<link rel="stylesheet" href="{{asset('design')}}/css/jquery.atwho.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<style>
 		*, body{
