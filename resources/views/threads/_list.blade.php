@@ -22,6 +22,9 @@
             <i class="ml-20 fa fa-comment-o" aria-hidden="true"></i>
         {{$thread->comments_count}} {{str_plural('Comment', $thread->comments_count)}}
 
+            <i class="fa fa-eye"></i>
+            {{$thread->visits()}} Visit
+
         <p class="footer pt-20 float-right">
             Channel:
             <a href="{{route("channels.show", $thread->channel->slug)}}">{{$thread->channel->name}}</a>

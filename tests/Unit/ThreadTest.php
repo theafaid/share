@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Support\Facades\Redis;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -47,5 +48,22 @@ class ThreadTest extends TestCase
             $thread = create('App\Thread');
 
             $this->assertTrue($thread->hasUpdatesFor());
+    }
+
+    /** @test */
+    function it_records_each_visit(){
+
+        $thread = make('App\Thread', ['id' => 1]);
+
+        Redis::del("threads.{$thread->id}.visits");
+
+        $thread->recordVisit();
+
+        $this->assertEquals(1, $thread->visits());
+
+        $thread->recordVisit();
+
+        $this->assertEquals(2, $thread->visits());
+
     }
 }

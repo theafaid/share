@@ -107,4 +107,20 @@ class Thread extends Model
         $trending = Redis::zrevrange('trending_threads', 0, 6);
         return array_map('json_decode', $trending);
     }
+
+    /**
+     * Record a visit if user visit a thread
+     */
+    public function recordVisit(){
+        Redis::incr("threads.{$this->id}.visits");
+        return $this;
+    }
+
+    /**
+     * Get the thread visits count
+     * @return mixed
+     */
+    public function visits(){
+        return Redis::get("threads.{$this->id}.visits") ?: 0;
+    }
 }
