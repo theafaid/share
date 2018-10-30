@@ -14,7 +14,7 @@ class Comment extends Model
     protected $guarded = [];
     protected $with = ['user', 'likes'];
     protected $withCount = ['likes'];
-    protected $appends = ['isLiked'];
+    protected $appends = ['isLiked', 'isBest'];
 
     protected static function boot(){
         parent::boot();
@@ -54,7 +54,7 @@ class Comment extends Model
      * @return mixed
      */
     public function wasJustPublished(){
-        return $this->created_at->gt(Carbon::now()->subMinute());
+        return $this->created_at->gt(Carbon::now()->subSecond(1));
     }
 
     /**
@@ -86,7 +86,7 @@ class Comment extends Model
     /**
      * Check if the comment is best comment in the thrad or not
      */
-    public function isBest(){
-        return !! $this->thread->best_comment_id == $this->id ;
+    public function getIsBestAttribute(){
+        return !! $this->thread->fresh()->best_comment_id == $this->id ;
     }
 }

@@ -47762,6 +47762,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -47778,7 +47781,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             editing: false,
             body: this.data.body,
-            oldBody: ''
+            oldBody: '',
+            isBest: this.data.isBest
         };
     },
 
@@ -47793,6 +47797,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.authorize(function (user) {
                 return _this.data.user_id == user.id;
             });
+        },
+        text: function text() {
+            return this.isBest ? 'Best Comment' : 'Mark Best Comment ?';
+        },
+        classes: function classes() {
+            return ['btn', this.isBest ? 'btn-danger' : 'btn-secondary'];
         }
     },
 
@@ -47834,6 +47844,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$emit("deleted", this.data.id);
             this.$toaster.success("Your Comment Has Been Deleted");
             axios.delete('/comments/' + this.data.id);
+        },
+        markBest: function markBest() {
+            !this.isBest ? this.storeBestComment() : this.removeBestComment();
+            this.isBest = !this.isBest;
+        },
+        storeBestComment: function storeBestComment() {
+            this.$toaster.success("You Marked The Best Comment");
+            axios.post('/comments/' + this.data.id + '/best');
+        },
+        removeBestComment: function removeBestComment() {
+            this.$toaster.success("You Removed The Best Comment");
+            axios.delete('/comments/' + this.data.id + '/best');
         }
     }
 
@@ -48319,8 +48341,23 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "comment-list", attrs: { id: "'comment-'+data.id" } },
+    {
+      staticClass: "comment-list",
+      class: this.isBest ? "alert alert-secondary" : "",
+      attrs: { id: "'comment-'+data.id" }
+    },
     [
+      _c("span", {
+        staticClass: "float-right",
+        class: _vm.classes,
+        domProps: { textContent: _vm._s(_vm.text) },
+        on: {
+          click: function($event) {
+            _vm.markBest()
+          }
+        }
+      }),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "single-comment justify-content-between d-flex" },

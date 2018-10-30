@@ -41,11 +41,11 @@ class CommentTest extends TestCase
 
         $comment = create('App\Comment', ['thread_id' => $thread->id]);
 
-        $this->assertFalse($comment->isBest());
+        $this->assertFalse($comment->isBest);
 
         $comment->markAsBest();
 
-        $this->assertTrue($comment->isBest());
+        $this->assertTrue($comment->isBest);
 
     }
 }

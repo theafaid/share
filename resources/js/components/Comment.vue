@@ -1,5 +1,8 @@
 <template>
-    <div id="'comment-'+data.id" class="comment-list">
+    <div id="'comment-'+data.id" class="comment-list" :class="this.isBest ? 'alert alert-secondary' : ''">
+
+        <span @click="markBest()" :class="classes" class="float-right" v-text="text"></span>
+
         <div class="single-comment justify-content-between d-flex">
             <div class="user justify-content-between d-flex">
                 <div class="thumb">
@@ -57,7 +60,8 @@
             return {
                 editing: false,
                 body: this.data.body,
-                oldBody: ''
+                oldBody: '',
+                isBest: this.data.isBest,
             }
         },
 
@@ -66,10 +70,16 @@
                 return !! user.id;
             },
 
-
-
             canUpdate(){
                return this.authorize(user => this.data.user_id == user.id);
+            },
+
+            text(){
+                return this.isBest ? 'Best Comment' : 'Mark Best Comment ?';
+            },
+
+            classes(){
+                return ['btn', this.isBest ? 'btn-danger' : 'btn-secondary'];
             }
         },
 
@@ -118,6 +128,21 @@
                 this.$emit("deleted", this.data.id);
                 this.$toaster.success("Your Comment Has Been Deleted");
                 axios.delete(`/comments/${this.data.id}`);
+            },
+
+            markBest(){
+                ! this.isBest ? this.storeBestComment() : this.removeBestComment();
+                this.isBest = ! this.isBest;
+            },
+
+            storeBestComment(){
+                this.$toaster.success("You Marked The Best Comment");
+                axios.post(`/comments/${this.data.id}/best`);
+            },
+
+            removeBestComment(){
+                this.$toaster.success("You Removed The Best Comment");
+                axios.delete(`/comments/${this.data.id}/best`);
             }
         }
 

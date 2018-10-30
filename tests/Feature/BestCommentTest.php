@@ -14,7 +14,7 @@ class BestCommentTest extends TestCase
 
         $this->signIn();
 
-        $thread = create('App\Thread', ['best_comment_id' => 1]);
+        $thread = create('App\Thread', ['best_comment_id' => 1, 'user_id' => auth()->id()]);
 
         $comment = create('App\Comment', ['thread_id' => $thread->id]);
 
@@ -29,7 +29,7 @@ class BestCommentTest extends TestCase
 
         $this->signIn();
 
-        $thread = create('App\Thread', ['best_comment_id' => 1]);
+        $thread = create('App\Thread', ['best_comment_id' => 1, 'user_id' => auth()->id()]);
 
         $comment = create('App\Comment', ['thread_id' => $thread->id]);
 
@@ -56,7 +56,7 @@ class BestCommentTest extends TestCase
         $this->post("/comments/{$comment->id}/best")
             ->assertStatus(403);
 
-        $this->assertFalse($comment->isBest());
+        $this->assertFalse($comment->isBest);
 
     }
 
