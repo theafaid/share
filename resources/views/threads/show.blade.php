@@ -132,6 +132,9 @@
                                     <li>
                                         <a>Likes <span v-text="thread.likes_count"></span></a>
                                     </li>
+                                    <li>
+                                        <a>Views <span v-text="{{$thread->visits()}}"></span></a>
+                                    </li>
                                 </ul>
                             </div>
 
