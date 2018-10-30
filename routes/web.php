@@ -31,6 +31,8 @@ Route::post('/threads/{thread}/subscriptions', 'SubscriptionsController@subscrib
 Route::delete('/threads/{thread}/subscriptions', 'SubscriptionsController@unsubscribeFromThread');
 Route::patch('/comments/{comment}', 'CommentsController@update');
 Route::delete('/comments/{comment}', 'CommentsController@destroy')->name('comments.destroy');
+Route::post('/comments/{comment}/best', 'BestCommentsController@store');
+Route::delete('/comments/{comment}/best', 'BestCommentsController@remove');
 Route::resource('/channels', 'ChannelsController');
 Route::post('/comments/{comment}/likes', 'LikesController@store')->name("like.store");
 Route::delete('/comments/{comment}/likes', 'LikesController@destroy')->name("like.destroy");

@@ -31,4 +31,21 @@ class CommentTest extends TestCase
         $this->assertTrue($comment->wasJustPublished());
 
     }
+
+    /** @test */
+    function it_knows_if_the_comment_is_best_comment(){
+
+        $this->signIn();
+
+        $thread = create('App\Thread');
+
+        $comment = create('App\Comment', ['thread_id' => $thread->id]);
+
+        $this->assertFalse($comment->isBest());
+
+        $comment->markAsBest();
+
+        $this->assertTrue($comment->isBest());
+
+    }
 }

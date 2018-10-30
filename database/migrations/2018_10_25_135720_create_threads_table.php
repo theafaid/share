@@ -22,6 +22,7 @@ class CreateThreadsTable extends Migration
             $table->text('body');
             $table->string('image')->nullable();
             $table->integer('comments_count')->default(0);
+            $table->unsignedInteger('best_comment_id')->nullable();
             $table->timestamps();
         });
     }

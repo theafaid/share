@@ -69,4 +69,24 @@ class Comment extends Model
 
     }
 
+    /**
+     * Mark a comment as best comment
+     */
+    public function markAsBest(){
+        $this->thread->update(['best_comment_id' => $this->id]);
+    }
+
+    /**
+     * Remove a comment form best comment
+     */
+    public function removeBest(){
+        $this->thread->update(['best_comment_id' => null]);;
+    }
+
+    /**
+     * Check if the comment is best comment in the thrad or not
+     */
+    public function isBest(){
+        return !! $this->thread->best_comment_id == $this->id ;
+    }
 }
