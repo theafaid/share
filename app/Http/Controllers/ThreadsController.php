@@ -60,7 +60,8 @@ class ThreadsController extends Controller
                             request()->file('image')->store('threads') : null ;
 
         $data['user_id' ] = auth()->id();
-        $data['slug'] = str_slug($data['title']);
+
+        $data['slug'] = $data['title'];
 
         $thread = Thread::create($data);
 

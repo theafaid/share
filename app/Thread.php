@@ -55,6 +55,21 @@ class Thread extends Model
         return $this->image ? "/storage/{$this->image}" : "/design/img/default/thread.png";
     }
 
+    public function setSlugAttribute($value){
+
+        // The value of the slug equals the title of the thread.
+        // We Checked if the database has this slug and if it exists
+        // It will change the slug to be slug_(time)
+
+        if(static::whereSlug($slug = str_slug($value))->exists()){
+            $value = $slug . "_" . time();
+        }else{
+            $value = $slug;
+        }
+
+        $this->attributes['slug'] = $value;
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
