@@ -25,6 +25,7 @@ class Thread extends Model
         // make the creator of the thread as subscriber
         static::created(function($thread){
             $thread->subscribe($thread->user_id);
+            $thread->update(['slug' => $thread->title]);
         });
         // delete all commented which assosiated with the deleted thread
         static::deleting(function($model){
@@ -55,14 +56,10 @@ class Thread extends Model
         return $this->image ? "/storage/{$this->image}" : "/design/img/default/thread.png";
     }
 
-    public function setSlugAttribute($value){
-
-        // The value of the slug equals the title of the thread.
-        // We Checked if the database has this slug and if it exists
-        // It will change the slug to be slug_(time)
+    public function setSlugAttribute($value, $count = 1){
 
         if(static::whereSlug($slug = str_slug($value))->exists()){
-            $value = $slug . "_" . time();
+            $value = "{$slug}-{$this->id}";
         }else{
             $value = $slug;
         }

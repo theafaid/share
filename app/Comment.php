@@ -84,7 +84,7 @@ class Comment extends Model
     }
 
     /**
-     * Check if the comment is best comment in the thrad or not
+     * Check if the comment is best comment in the thread or not
      */
     public function getIsBestAttribute(){
         return !! $this->thread->fresh()->best_comment_id == $this->id ;

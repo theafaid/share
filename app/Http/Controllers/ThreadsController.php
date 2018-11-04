@@ -61,8 +61,6 @@ class ThreadsController extends Controller
 
         $data['user_id' ] = auth()->id();
 
-        $data['slug'] = $data['title'];
-
         $thread = Thread::create($data);
 
         return redirect(route('threads.show', $thread->slug));
