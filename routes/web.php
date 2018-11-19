@@ -29,6 +29,7 @@ Route::get('/threads/{thread}/comments', 'CommentsController@index');
 Route::post('/threads/{thread}/comments', 'CommentsController@store')->name('comments.store');
 Route::post('/threads/{thread}/subscriptions', 'SubscriptionsController@subscribeToThread');
 Route::delete('/threads/{thread}/subscriptions', 'SubscriptionsController@unsubscribeFromThread');
+//Route::post('/threads/{thread}/lock', 'LockThreads')
 Route::patch('/comments/{comment}', 'CommentsController@update');
 Route::delete('/comments/{comment}', 'CommentsController@destroy')->name('comments.destroy');
 Route::post('/comments/{comment}/best', 'BestCommentsController@store');

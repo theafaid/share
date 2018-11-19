@@ -81,4 +81,27 @@ class ThreadTest extends TestCase
         $this->assertEquals('hello-and-welcome_' . time(), $thread->slug);
 
     }
+
+    /** @test */
+    function it_can_be_locked(){
+
+        $thread = create('App\Thread');
+
+        $this->assertEquals($thread->locked, 0);
+
+        $thread->lock();
+
+        $this->assertEquals($thread->locked, 1);
+
+    }
+
+    /** @test */
+    function it_can_be_unlocked(){
+
+        $thread = create('App\Thread', ['locked' => true]);
+
+        $thread->unlock();
+
+        $this->assertEquals($thread->locked, 0);
+    }
 }

@@ -36,6 +36,10 @@ class CommentsController extends Controller
 
     public function store(Thread $thread)
     {
+        if($thread->locked){
+            return response([], 422);
+        }
+
         if(\Gate::denies('create', new Comment())){
             return response("Please wait for a minute before create new comment", 429);
         }

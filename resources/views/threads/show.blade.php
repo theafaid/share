@@ -138,7 +138,7 @@
                                 </ul>
                             </div>
 
-                            <div class="single_widget recent_widget">
+                             <div class="single_widget recent_widget">
                                 <h4 class="text-uppercase pb-20">Recent Posts</h4>
                                 <div class="active-recent-carusel">
                                     <div class="item">

@@ -23,6 +23,7 @@ class CreateThreadsTable extends Migration
             $table->string('image')->nullable();
             $table->integer('comments_count')->default(0);
             $table->unsignedInteger('best_comment_id')->nullable();
+            $table->boolean("locked")->default(false);
             $table->timestamps();
         });
     }

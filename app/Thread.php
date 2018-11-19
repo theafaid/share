@@ -120,4 +120,14 @@ class Thread extends Model
         $trending = Redis::zrevrange('trending_threads', 0, 6);
         return array_map('json_decode', $trending);
     }
+
+    public function lock(){
+        $this->locked = true;
+        $this->save();
+    }
+
+    public function unlock(){
+        $this->locked = false;
+        $this->save();
+    }
 }
