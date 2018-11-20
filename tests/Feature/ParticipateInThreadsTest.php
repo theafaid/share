@@ -114,7 +114,7 @@ class ParticipateInThreadsTest extends TestCase
 
     /** @test */
     function a_user_may_publish_only_one_comment_per_minute(){
-
+        
         $this->signIn();
 
         $thread = create('App\Thread');

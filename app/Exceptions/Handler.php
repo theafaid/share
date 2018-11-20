@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Dotenv\Exception\ValidationException;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -46,6 +47,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceof ValidationException){
+            return response('validation failed.', 422);
+        }
+
+        if($exception instanceof ThrottleException){
+            return response('You are posting too frequently. Wait a minute !', 429);
+        }
         return parent::render($request, $exception);
     }
 }

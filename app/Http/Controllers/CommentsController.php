@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateCommentRequest;
 use App\Rules\FreeSpam;
 use App\Thread;
 use App\Comment;
@@ -34,26 +35,9 @@ class CommentsController extends Controller
     }
 
 
-    public function store(Thread $thread)
+    public function store(Thread $thread, CreateCommentRequest $request)
     {
-        if($thread->locked){
-            return response([], 422);
-        }
-
-        if(\Gate::denies('create', new Comment())){
-            return response("Please wait for a minute before create new comment", 429);
-        }
-
-        request()->validate([
-            'body' => ['required', 'string', 'max:1000', new FreeSpam()]
-        ]);
-
-        $comment = $thread->addComment(request('body'));
-
-        if(request()->expectsJson()){
-            return $comment->load('user');
-        }
-        return back();
+        return $request->persist($thread);
     }
 
     /**
