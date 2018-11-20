@@ -11,7 +11,7 @@ class HeldKeyDOwn
      * @throws \Exception
      */
     public function detect($body){
-        if(preg_match('/(.)\\1{4,}/', $body, $matches)){
+        if(preg_match('/(.)\\1{4,}/', $body)){
             throw new \Exception("You Held a Key Down !!");
         }
     }

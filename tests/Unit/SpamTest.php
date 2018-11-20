@@ -11,22 +11,26 @@ class SpamTest extends TestCase
     use RefreshDatabase;
     /** @test */
     function it_checks_for_invalid_keywords(){
+
       $spam = new Spam();
 
       $this->assertFalse($spam->detect("Innocent Comment"));
 
-      $this->expectException('Exception');
+        $this->expectException('Exception');
 
-      $spam->detect('dog');
+        $spam->detect('shit');
+        $spam->detect('idiot');
 
     }
 
     /** @test */
     function it_checks_for_key_held_down(){
+
         $spam = new Spam();
 
         $this->expectException('Exception');
 
-        $spam->detect('aaaaaaaaaaaa');
+        $spam->detect('11111');
+
     }
 }

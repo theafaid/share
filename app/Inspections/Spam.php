@@ -9,6 +9,8 @@ class Spam
     ];
 
     /**
+     * Detect a spam
+     * Supported : "Invalid keywords", "Held a key down"
      * @param $body
      * @return bool
      */
@@ -18,7 +20,4 @@ class Spam
         }
         return false;
     }
-
-
-
 }

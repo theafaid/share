@@ -10,10 +10,9 @@ class InvalidKeywords
      */
     public function detect($body){
         $invalidKeywords = [
-            'dog',
-            'donkey',
-            'stupid',
-            'asshole'
+            'shit',
+            'idiotic',
+            'idiot'
         ];
 
         foreach($invalidKeywords as $keyword){
