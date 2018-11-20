@@ -57,6 +57,10 @@ class Comment extends Model
         return $this->created_at->gt(Carbon::now()->subSecond(1));
     }
 
+    public function mentionedUsers(){
+        preg_match_all('/\@([\w]+)/', $this->body, $matches);
+        return $matches[1];
+    }
     /**
      * If the body of the comment has a mentioned users
      * it well replace all mentioned users to be a link

@@ -33,6 +33,20 @@ class CommentTest extends TestCase
     }
 
     /** @test */
+    function it_can_detect_all_mentioned_users_in_the_body(){
+
+        $comment = create('App\Comment', ['body' => '@jane and @jone']);
+        $this->assertEquals(['jane', 'jone'], $comment->mentionedUsers());
+
+    }
+
+    /** @test */
+    function it_wraps_mentioned_usernames_in_the_body_within_anchor_tags(){
+        $comment = create('App\Comment', ['body' => '@jane hey']);
+        $this->assertEquals('<a href="/profile/jane">@jane</a> hey', $comment->body);
+    }
+
+    /** @test */
     function it_knows_if_the_comment_is_best_comment(){
 
         $this->signIn();

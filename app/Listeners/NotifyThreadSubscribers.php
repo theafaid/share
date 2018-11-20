@@ -30,7 +30,7 @@ class NotifyThreadSubscribers
         // Notify all thread subscriptions users
         foreach($event->comment->thread->subscriptions as $subscription){
 
-            // User must be the creater of the comment to be notified
+            // User must be the creator of the comment to be notified
             if($subscription->user->id != $event->comment->user_id){
                 $subscription->user->notify(new ThreadReceivedNewComment($event->comment));
             }

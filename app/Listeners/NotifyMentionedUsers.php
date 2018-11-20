@@ -28,12 +28,12 @@ class NotifyMentionedUsers
      */
     public function handle(NewCommentAdded $event)
     {
-        // if body contais @username > it will catched
-        preg_match_all('/\@([\w]+)/', $event->comment->body, $matches);
+//        // if body contains @username > it will be selected
+//        preg_match_all('/\@([\w]+)/', $event->comment->body, $matches);
 
-        foreach($matches[1] as $username){
+        foreach($event->comment->mentionedUsers() as $username){
 
-            $user = User::where('username', $username)->first();
+            $user = User::where('username', $username)->firstOrFail();
             // user must be exists and cannot be the same user who created the comment
             if($user && $username != $event->comment->user->username){
                 $user->notify(new YouWereMentioned($event->comment));
