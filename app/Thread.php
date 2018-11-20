@@ -24,8 +24,10 @@ class Thread extends Model
         parent::boot();
         // make the creator of the thread as subscriber
         static::created(function($thread){
+
             $thread->subscribe($thread->user_id);
             $thread->update(['slug' => $thread->title]);
+
         });
         // delete all commented which assosiated with the deleted thread
         static::deleting(function($model){
@@ -86,17 +88,23 @@ class Thread extends Model
      * his last visit
      * @throws \Exception
      */
-    public function hasUpdatesFor(){
+    public function hasUpdatesFor($user = null){
+
         if(! auth()->user()) return;
 
-        $lastSeenTime = cache(sprintf("users.%.visits.%", auth()->id(), $this->id));
+        $user = $user ?: auth()->user();
+
+        $lastSeenTime = cache(sprintf("users.%.visits.%", $user->id, $this->id));
 
         return $this->updated_at->gt($lastSeenTime);
     }
 
-    public function saveVisitInCache(){
+    /**
+     * Record in cache that a user has visited a thread when he view it
+     */
+    public function read(){
+
         if(auth()->user()){
-            // Cache must have that user visited thread when he show a thread
             $cacheKey = sprintf("users.%.visits.%", auth()->id(), $this->id);
             cache()->forever($cacheKey, Carbon::now());
         }

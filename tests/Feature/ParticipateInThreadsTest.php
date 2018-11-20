@@ -36,6 +36,8 @@ class ParticipateInThreadsTest extends TestCase
 
         $this->get($this->path("comments"))
             ->assertSee($this->comment->body);
+
+        $this->assertDatabaseHas('comments', ['body' => $this->comment->body]);
    }
 
     /** @test */
