@@ -77,13 +77,13 @@ class ThreadTest extends TestCase
 
         $this->signIn();
 
-        $thread = create('App\Thread', ['slug' => 'hello-and-welcome']);
+        $thread = create('App\Thread', ['title' => 'hello and welcome']);
 
         $this->assertEquals('hello-and-welcome', $thread->slug);
 
-        $thread = create('App\Thread', ['slug' => 'hello-and-welcome']);
+        $thread = create('App\Thread', ['title' => 'hello and welcome']);
 
-        $this->assertEquals('hello-and-welcome_' . time(), $thread->slug);
+        $this->assertEquals('hello-and-welcome-' . time(), $thread->slug);
 
     }
 

@@ -61,7 +61,7 @@ class Thread extends Model
     public function setSlugAttribute($value, $count = 1){
 
         if(static::whereSlug($slug = str_slug($value))->exists()){
-            $value = "{$slug}-{$this->id}";
+            $value = "{$slug}-" . time();
         }else{
             $value = $slug;
         }
