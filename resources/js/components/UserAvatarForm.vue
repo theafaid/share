@@ -1,15 +1,21 @@
 <template>
     <div>
         <div class="input-group stylish-input-group text-center">
-            <img :src="avatar" width="150" height="150" style="margin: auto"><br>
+            <img :src="avatar" width="150" height="150" style="margin: auto">
         </div><hr>
-        <input type="file" class='form-control' @change="uploadAvatar" accept="image/*">
+        <ImageUpload @loaded="loaded"></ImageUpload>
     </div>
 </template>
 
 <script>
+    import ImageUpload from './ImageUpload'
+
     export default {
         props: ['data'],
+
+        components: {
+            'ImageUpload': ImageUpload
+        },
 
         data(){
             return {
@@ -18,33 +24,23 @@
         },
 
         methods: {
-            uploadAvatar(e){
-                if(e.target.files.length){
-                    // there is selected image
-                    let avatar = e.target.files[0];
-
-                    let reader = new FileReader();
-
-                    reader.readAsDataURL(avatar);
-
-                    reader.onload = (e) => {
-
-                        this.avatar = e.target.result;
-                        this.$toaster.success("Your Profile Picture Has Beed Updated Successfully");
-                    };
-                    // persist to the server
-                    this.persist(avatar);
-
-                }
+            loaded(data){
+                this.avatar = data.src;
+                this.persist(data.avatar);
             },
 
             persist(avatar){
-
                 let data = new FormData();
 
                 data.append('avatar', avatar);
 
-                axios.post("/api/users/avatar", data);
+                axios.post("/api/users/avatar", data)
+                    .then(response => {
+                        this.$toaster.success("Your Profile Picture Has Beed Updated Successfully");
+                    })
+                    .catch(error => {
+                        this.$toaster.error(error.response.data.errors.avatar[1]);
+                    });
             }
         }
     }
