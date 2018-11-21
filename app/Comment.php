@@ -84,13 +84,13 @@ class Comment extends Model
      * Remove a comment form best comment
      */
     public function removeBest(){
-        $this->thread->update(['best_comment_id' => null]);;
+        $this->thread->update(['best_comment_id' => null]);
     }
 
     /**
      * Check if the comment is best comment in the thread or not
      */
     public function getIsBestAttribute(){
-        return !! $this->thread->fresh()->best_comment_id == $this->id ;
+        return !! $this->thread->best_comment_id == $this->id ;
     }
 }

@@ -1,7 +1,7 @@
 <template>
-    <div id="'comment-'+data.id" class="comment-list" :class="this.isBest ? 'alert alert-secondary' : ''">
+    <div class="comment-list" :class="this.isBest ? 'alert alert-secondary' : ''">
 
-        <span @click="markBest()" :class="classes" class="float-right" v-text="text"></span>
+        <button @click="markBest()" :class="classes" class="float-right" v-text="text"></button>
 
         <div class="single-comment justify-content-between d-flex">
             <div class="user justify-content-between d-flex">
@@ -25,8 +25,8 @@
 
         <div class="float-right">
 
-            <div v-if="signedIn">
-                <div style="display:inline" v-if="canUpdate">
+            <div>
+                <div style="display:inline" v-if="authorize('updateComment', data)">
                     <button class="genric-btn primary-border small" @click.prevent="editing=true" v-if="!editing">
                         <i class="fa fa-edit"></i>
                     </button>
@@ -53,6 +53,9 @@
         components: {
             'like-comment': LikeComment
         },
+        created(){
+            console.log(this.data);
+        },
 
         props: ['data'],
 
@@ -66,13 +69,6 @@
         },
 
         computed: {
-            signedIn(){
-                return !! user.id;
-            },
-
-            canUpdate(){
-               return this.authorize(user => this.data.user_id == user.id);
-            },
 
             text(){
                 return this.isBest ? 'Best Comment' : 'Mark Best Comment ?';

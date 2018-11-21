@@ -30677,14 +30677,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  */
 
 __webpack_require__(140);
-
+var authorizations = __webpack_require__(223);
 window.Vue = __webpack_require__(161);
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_v_toaster___default.a, { timeout: 3000 });
 
-window.Vue.prototype.authorize = function (handler) {
-  return handler(user);
+window.Vue.prototype.authorize = function () {
+  if (!user.id) return false;
+
+  for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
+    params[_key] = arguments[_key];
+  }
+
+  if (typeof $params[0] === 'string') {
+    return authorizations[params[0]](params[1]);
+  }
+
+  return params[0](user);
 };
 
 /**
@@ -47774,6 +47784,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         'like-comment': __WEBPACK_IMPORTED_MODULE_1__LikeComment___default.a
     },
+    created: function created() {
+        console.log(this.data);
+    },
+
 
     props: ['data'],
 
@@ -47788,16 +47802,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     computed: {
-        signedIn: function signedIn() {
-            return !!user.id;
-        },
-        canUpdate: function canUpdate() {
-            var _this = this;
-
-            return this.authorize(function (user) {
-                return _this.data.user_id == user.id;
-            });
-        },
         text: function text() {
             return this.isBest ? 'Best Comment' : 'Mark Best Comment ?';
         },
@@ -47828,15 +47832,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         persist: function persist() {
-            var _this2 = this;
+            var _this = this;
 
             axios.patch("/comments/" + this.data.id, { body: this.body }).then(function (response) {
-                _this2.editing = false;
-                _this2.$toaster.success("Your Comment Has Updated");
+                _this.editing = false;
+                _this.$toaster.success("Your Comment Has Updated");
             }).catch(function (error) {
-                _this2.$toaster.error(error.response.data.errors.body[0]);
-                _this2.body = _this2.data.body;
-                _this2.editing = false;
+                _this.$toaster.error(error.response.data.errors.body[0]);
+                _this.body = _this.data.body;
+                _this.editing = false;
             });
         },
         destroy: function destroy() {
@@ -48343,11 +48347,10 @@ var render = function() {
     "div",
     {
       staticClass: "comment-list",
-      class: this.isBest ? "alert alert-secondary" : "",
-      attrs: { id: "'comment-'+data.id" }
+      class: this.isBest ? "alert alert-secondary" : ""
     },
     [
-      _c("span", {
+      _c("button", {
         staticClass: "float-right",
         class: _vm.classes,
         domProps: { textContent: _vm._s(_vm.text) },
@@ -48449,49 +48452,47 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "float-right" }, [
-        _vm.signedIn
-          ? _c(
-              "div",
-              [
-                _vm.canUpdate
-                  ? _c("div", { staticStyle: { display: "inline" } }, [
-                      !_vm.editing
-                        ? _c(
-                            "button",
-                            {
-                              staticClass: "genric-btn primary-border small",
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  _vm.editing = true
-                                }
-                              }
-                            },
-                            [_c("i", { staticClass: "fa fa-edit" })]
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c(
+        _c(
+          "div",
+          [
+            _vm.authorize("updateComment", _vm.data)
+              ? _c("div", { staticStyle: { display: "inline" } }, [
+                  !_vm.editing
+                    ? _c(
                         "button",
                         {
-                          staticClass: "genric-btn danger-border small",
+                          staticClass: "genric-btn primary-border small",
                           on: {
                             click: function($event) {
                               $event.preventDefault()
-                              _vm.destroy()
+                              _vm.editing = true
                             }
                           }
                         },
-                        [_c("i", { staticClass: "fa fa-trash" })]
+                        [_c("i", { staticClass: "fa fa-edit" })]
                       )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("like-comment", { attrs: { data: _vm.data } })
-              ],
-              1
-            )
-          : _vm._e()
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "genric-btn danger-border small",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.destroy()
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-trash" })]
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("like-comment", { attrs: { data: _vm.data } })
+          ],
+          1
+        )
       ])
     ]
   )
@@ -51460,6 +51461,19 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 222 */,
+/* 223 */
+/***/ (function(module, exports) {
+
+var authorizations = {
+    updateComment: function updateComment(comment) {
+        return comment.user_id === user.id;
+    }
+};
+
+module.exports = authorizations;
 
 /***/ })
 /******/ ]);

@@ -6,14 +6,20 @@
  */
 
 require('./bootstrap');
-
+let authorizations = require('./authorizations');
 window.Vue = require('vue');
 import Toaster from 'v-toaster'
 import 'v-toaster/dist/v-toaster.css'
 Vue.use(Toaster, {timeout: 3000})
 
-window.Vue.prototype.authorize = function(handler){
-    return handler(user);
+window.Vue.prototype.authorize = function(...params){
+    if(! user.id ) return false;
+
+    if(typeof $params[0] === 'string'){
+       return authorizations[params[0]](params[1]);
+    }
+
+    return params[0](user);
 };
 
 /**

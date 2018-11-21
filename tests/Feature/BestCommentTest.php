@@ -16,12 +16,22 @@ class BestCommentTest extends TestCase
 
         $thread = create('App\Thread', ['best_comment_id' => 1, 'user_id' => auth()->id()]);
 
-        $comment = create('App\Comment', ['thread_id' => $thread->id]);
+        $comment1 = create('App\Comment', ['thread_id' => $thread->id]);
+        $comment2 = create('App\Comment', ['thread_id' => $thread->id]);
 
-        $this->post("/comments/{$comment->id}/best")
+        $this->post("/comments/{$comment1->id}/best")
             ->assertStatus(204);
 
-        $this->assertEquals($comment->id, $thread->best_comment_id);
+        $this->assertTrue($comment1->isBest);
+
+        $this->assertEquals($comment1->id, $thread->best_comment_id);
+
+        $this->post("/comments/{$comment2->id}/best")
+            ->assertStatus(204);
+
+        $this->assertEquals($comment2->id, $thread->fresh()->best_comment_id);
+        $this->assertTrue($comment2->isBest);
+
     }
 
     /** @test */
@@ -40,7 +50,7 @@ class BestCommentTest extends TestCase
         $this->delete("/comments/{$comment->id}/best")
             ->assertStatus(204);
 
-        $this->assertEquals(1, $thread->best_comment_id);
+        $this->assertEquals(null, $thread->fresh()->best_comment_id);
     }
 
     /** @test */
