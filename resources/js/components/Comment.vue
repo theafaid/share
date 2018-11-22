@@ -26,7 +26,7 @@
         <div class="float-right">
 
             <div>
-                <div style="display:inline" v-if="authorize('updateComment', data)">
+                <div style="display:inline" v-if="false">
                     <button class="genric-btn primary-border small" @click.prevent="editing=true" v-if="!editing">
                         <i class="fa fa-edit"></i>
                     </button>

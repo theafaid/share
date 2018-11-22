@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Thread extends Model
 {
@@ -13,6 +14,7 @@ class Thread extends Model
     use RecordActivity;
     use Commentable;
     use RecordVisits;
+    use Searchable;
 
     protected $guarded = [];
     protected $dates = ['created_at'];

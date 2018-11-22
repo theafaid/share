@@ -48455,7 +48455,7 @@ var render = function() {
         _c(
           "div",
           [
-            _vm.authorize("updateComment", _vm.data)
+            false
               ? _c("div", { staticStyle: { display: "inline" } }, [
                   !_vm.editing
                     ? _c(
