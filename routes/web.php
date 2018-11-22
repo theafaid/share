@@ -50,4 +50,3 @@ Route::group(['middleware' => 'verified'], function(){
     Route::get('/myprofile', 'ProfilesController@index')->name('myprofile');
     Route::patch('/myprofile', 'ProfilesController@updateProfileData')->name('myprofile');
 });
-Route::view('test' , 'threads.index');

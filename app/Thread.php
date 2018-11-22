@@ -124,6 +124,18 @@ class Thread extends Model
     }
 
     /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $data = $this->toArray();
+        $data['path'] = url(route('threads.show', $this->slug));
+        return $data;
+    }
+
+    /**
      * @return array
      */
     public function getTrending(){

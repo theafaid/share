@@ -15,14 +15,15 @@ class SearchController extends Controller
             if(request()->expectsJson()){
                 return $result;
             }else{
-                return view("threads.index",
+                return view("threads.search",
                     [
                         'title'   => "Result for '{$search}'",
-                        'threads' => $result,
                         'trending' => (new Thread())->getTrending()
                     ]
                 );
             }
         }
+
+        return redirect()->route('threads.index');
     }
 }
