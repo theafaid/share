@@ -6,11 +6,17 @@
  */
 
 require('./bootstrap');
+
 let authorizations = require('./authorizations');
+
 window.Vue = require('vue');
+
+import InstantSearch from 'vue-instantsearch';
 import Toaster from 'v-toaster'
 import 'v-toaster/dist/v-toaster.css'
+
 Vue.use(Toaster, {timeout: 3000})
+Vue.use(InstantSearch);
 
 window.Vue.prototype.authorize = function(...params){
     if(! user.id ) return false;
