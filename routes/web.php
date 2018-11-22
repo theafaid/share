@@ -24,6 +24,7 @@ Auth::routes(['verify' => 'true']);
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/search', 'SearchController@index');
 Route::resource('/threads', 'ThreadsController');
 Route::get('/threads/{thread}/comments', 'CommentsController@index');
 Route::post('/threads/{thread}/comments', 'CommentsController@store')->name('comments.store');

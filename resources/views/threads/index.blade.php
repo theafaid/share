@@ -33,7 +33,13 @@
 
                             @empty
 
-                                <div class="alert alert-danger">0 Result Founded In [ {{$title}} ]</div>
+                                <div class="alert alert-danger">
+                                    @if(request('q'))
+                                        No Result Founded In for searching {{$title}}
+                                    @else
+                                        0 Result Founded In [ {{$title}} ]
+                                    @endif
+                                </div>
                             @endforelse
                         </div>
 
@@ -49,12 +55,14 @@
                         <div class="single_widget search_widget">
                             <div id="imaginary_container">
                                 <div class="input-group stylish-input-group">
-                                    <input type="text" class="form-control"  placeholder="Search" >
-                                    <span class="input-group-addon">
-                                        <button type="submit">
-                                            <span class="lnr lnr-magnifier"></span>
-                                        </button>
-                                    </span>
+                                    <form action="search" method="GET" class="form-inline">
+                                        <input type="text" name="q" class="form-control"  placeholder="Search" value="{{request('q')}}">
+                                        <span class="input-group-addon">
+                                            <button type="submit">
+                                                <span class="lnr lnr-magnifier"></span>
+                                            </button>
+                                        </span>
+                                    </form>
                                 </div>
                             </div>
                         </div>
