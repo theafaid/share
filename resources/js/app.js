@@ -37,6 +37,7 @@ window.Vue.prototype.authorize = function(...params){
 Vue.component('thread', require('./pages/Thread.vue'));
 Vue.component('UserAvatarForm', require('./components/UserAvatarForm.vue'));
 Vue.component('notification', require('./components/Notification.vue'));
+Vue.component('wysiwyg', require('./components/Wysiwyg.vue'));
 
 const app = new Vue({
     el: '#app'

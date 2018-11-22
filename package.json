@@ -23,6 +23,7 @@
         "at.js": "^1.5.4",
         "jquery.caret": "^0.3.1",
         "moment": "^2.22.2",
+        "trix": "^1.0.0",
         "v-toaster": "^1.0.3",
         "vue-instantsearch": "^1.7.0"
     }
