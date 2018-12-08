@@ -47,7 +47,7 @@
 
                         <div class="form-group">
                             <label class="lead">Thread Body</label>
-                            <textarea  class="form-control" name="body" placeholder="Thread Body" value="{{old('body')}}" required></textarea>
+                            <wysiwyg  ></wysiwyg>
                         </div>
 
                         <div class="form-group">

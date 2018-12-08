@@ -14,6 +14,10 @@ window.Vue = require('vue');
 import InstantSearch from 'vue-instantsearch';
 import Toaster from 'v-toaster'
 import 'v-toaster/dist/v-toaster.css'
+import 'trix/dist/trix.css'
+import Trix from 'trix'
+
+Vue.use(Trix);
 
 Vue.use(Toaster, {timeout: 3000})
 Vue.use(InstantSearch);

@@ -19,11 +19,7 @@ class CreateCommentRequest extends FormRequest
      */
     public function authorize()
     {
-        if(Gate::allows('create', new Comment())){
-            return true;
-        }
-
-        return false;
+        return Gate::allows('create', new Comment());
     }
 
 

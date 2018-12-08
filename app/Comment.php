@@ -54,7 +54,7 @@ class Comment extends Model
      * @return mixed
      */
     public function wasJustPublished(){
-        return $this->created_at->gt(Carbon::now()->subSecond(1));
+        return $this->created_at->gt(Carbon::now()->subMinute(1));
     }
 
     public function mentionedUsers(){

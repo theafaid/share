@@ -53,7 +53,7 @@ class ThreadsFilter
      * @return mixed
      */
     public static function unansweredThreads($count = 20){
-        $data['title'] = "Unanswered Threads";
+        $data['title'] = "Unanswered Threads"; 
         $data['data']  = Thread::where('comments_count',"=", 0)->paginate($count);
 
         return $data;
