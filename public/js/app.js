@@ -71267,6 +71267,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             Fire.$emit('best-selected', this.data.id);
         },
         removeBestComment: function removeBestComment() {
+            this.isBest = false;
             this.$toaster.success("You Removed The Best Comment");
             axios.delete('/comments/' + this.data.id + '/best');
         }

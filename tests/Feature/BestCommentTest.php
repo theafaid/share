@@ -11,7 +11,6 @@ class BestCommentTest extends TestCase
 
     /** @test */
     function a_thread_creator_can_mark_any_comment_as_best_comment(){
-
         $this->signIn();
 
         $thread = create('App\Thread', ['best_comment_id' => 1, 'user_id' => auth()->id()]);
@@ -87,5 +86,21 @@ class BestCommentTest extends TestCase
 
         $this->delete("/comments/{$comment->id}/best")
             ->assertStatus(403);
+    }
+
+    /** @test */
+    function if_the_best_comment_deleted_then_the_thread_will_updated_to_reflect_this(){
+
+        $this->signIn();
+
+        $comment = create('App\Comment', ['user_id' => auth()->id()]);
+
+        $comment->markAsBest();
+
+        $this->assertEquals($comment->thread->best_comment_id, $comment->id);
+
+        $this->delete(route("comments.destroy", $comment->id));
+
+        $this->assertNull($comment->thread->fresh()->best_comment_id);
     }
 }

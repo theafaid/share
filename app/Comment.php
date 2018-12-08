@@ -18,13 +18,16 @@ class Comment extends Model
 
     protected static function boot(){
         parent::boot();
-        // increase comments count on the thread
+
         static::created(function($comment){
+            // increase comments count on the thread
             $comment->thread->increment("comments_count");
         });
-        // decrease comments count on the thread
         static::deleted(function($comment){
+            // decrease comments count on the thread
             $comment->thread->decrement("comments_count");
+            // Remove from best comment if it was the best
+            $comment->isBest ? $comment->removeBest() : '';
         });
     }
 

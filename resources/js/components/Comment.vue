@@ -149,7 +149,8 @@
             },
 
             removeBestComment(){
-                this.$toaster.success("You Removed The Best Comment");
+                this.isBest = false;
+                this.$toaster.warning"You Removed The Best Comment");
                 axios.delete(`/comments/${this.data.id}/best`);
             }
         }
