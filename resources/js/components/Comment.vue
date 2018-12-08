@@ -1,7 +1,13 @@
 <template>
-    <div class="comment-list" :class="this.isBest ? 'alert alert-secondary' : ''">
+    <div class="comment-list" :class="isBest ? 'alert alert-primary' : ''">
 
-        <button @click="markBest()" :class="classes" class="float-right" v-text="text"></button>
+        <button
+                class="float-right"
+                :class="classes"
+                @click="markBest()"
+                v-text="text"
+                v-show="authorize('updateThread', comment.thread)">
+        </button>
 
         <div class="single-comment justify-content-between d-flex">
             <div class="user justify-content-between d-flex">
@@ -25,8 +31,8 @@
 
         <div class="float-right">
 
-            <div>
-                <div style="display:inline" v-if="false">
+            <div v-if="signedIn">
+                <div style="display:inline" v-if="authorize('updateComment', comment)">
                     <button class="genric-btn primary-border small" @click.prevent="editing=true" v-if="!editing">
                         <i class="fa fa-edit"></i>
                     </button>
@@ -53,9 +59,6 @@
         components: {
             'like-comment': LikeComment
         },
-        created(){
-            console.log(this.data);
-        },
 
         props: ['data'],
 
@@ -65,7 +68,16 @@
                 body: this.data.body,
                 oldBody: '',
                 isBest: this.data.isBest,
+                comment: this.data
             }
+        },
+
+        created(){
+            this.isBest = (this.data.id == this.data.thread.best_comment_id);
+
+            Fire.$on('best-selected', (id) => {
+                this.isBest = (id == this.data.id);
+            });
         },
 
         computed: {
@@ -128,12 +140,12 @@
 
             markBest(){
                 ! this.isBest ? this.storeBestComment() : this.removeBestComment();
-                this.isBest = ! this.isBest;
             },
 
             storeBestComment(){
                 this.$toaster.success("You Marked The Best Comment");
                 axios.post(`/comments/${this.data.id}/best`);
+                Fire.$emit('best-selected', this.data.id);
             },
 
             removeBestComment(){

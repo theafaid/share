@@ -29,12 +29,6 @@
             }
         },
 
-        computed: {
-            signedIn(){
-                return !! user.id;
-            }
-        },
-
         mounted(){
             $('#body').atwho({
                 at: "@",

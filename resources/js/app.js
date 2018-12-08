@@ -7,9 +7,25 @@
 
 require('./bootstrap');
 
-let authorizations = require('./authorizations');
-
 window.Vue = require('vue');
+
+let authorizations = require('./Authorizations')
+window.Fire = new Vue();
+Vue.prototype.signedIn = user.id;
+
+Vue.prototype.authorize=function(...params){
+
+    if(user.id){
+
+        if(typeof params[0] == 'string'){
+            return authorizations[params[0]](params[1]);
+        }
+
+        return false;
+    }
+
+    return false;
+}
 
 import InstantSearch from 'vue-instantsearch';
 import Toaster from 'v-toaster'
@@ -21,16 +37,6 @@ Vue.use(Trix);
 
 Vue.use(Toaster, {timeout: 3000})
 Vue.use(InstantSearch);
-
-window.Vue.prototype.authorize = function(...params){
-    if(! user.id ) return false;
-
-    if(typeof $params[0] === 'string'){
-       return authorizations[params[0]](params[1]);
-    }
-
-    return params[0](user);
-};
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
