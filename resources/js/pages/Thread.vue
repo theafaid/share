@@ -15,8 +15,40 @@
         data(){
             return {
                 thread: this.data,
+                editing: false,
+                form:{
+                    title: this.data.title,
+                    body: this.data.body
+                }
             }
         },
+
+        methods:{
+            cancel(){
+                this.editing = false;
+                this.resetForm();
+            },
+
+            update(){
+                axios.patch(location.pathname, this.form)
+                    .then(() => {
+                        this.editing = false;
+                        this.$toaster.success('Thread has updated successfully');
+                        this.thread.title = this.form.title;
+                        this.thread.body  = this.form.body;
+                        this.resetForm();
+                    }).catch(() => {
+                        this.editing = false;
+                        this.$toaster.error('Please complete all fields !');
+                        this.resetForm();
+                    });
+            },
+
+            resetForm(){
+                this.form.title = this.thread.title;
+                this.form.body  = this.thread.body;
+            }
+        }
     }
 </script>
 

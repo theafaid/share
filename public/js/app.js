@@ -70893,8 +70893,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            thread: this.data
+            thread: this.data,
+            editing: false,
+            form: {
+                title: this.data.title,
+                body: this.data.body
+            }
         };
+    },
+
+
+    methods: {
+        cancel: function cancel() {
+            this.editing = false;
+            this.resetForm();
+        },
+        update: function update() {
+            var _this = this;
+
+            axios.patch(location.pathname, this.form).then(function () {
+                _this.editing = false;
+                _this.$toaster.success('Thread has updated successfully');
+                _this.thread.title = _this.form.title;
+                _this.thread.body = _this.form.body;
+                _this.resetForm();
+            }).catch(function () {
+                _this.editing = false;
+                _this.$toaster.error('Please complete all fields !');
+                _this.resetForm();
+            });
+        },
+        resetForm: function resetForm() {
+            this.form.title = this.thread.title;
+            this.form.body = this.thread.body;
+        }
     }
 });
 

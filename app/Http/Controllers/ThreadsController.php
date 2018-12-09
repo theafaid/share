@@ -101,9 +101,22 @@ class ThreadsController extends Controller
     /**
      *
      */
-    public function update()
+    public function update(Thread $thread)
     {
-        //
+        if(! auth()->user()->can('update', $thread)){
+            return response(['message' => 'unauthorized'], 403);
+        }
+
+        $data = request()->validate([
+            'title' => 'required|string|max:255',
+            'body'  => 'required|string|min:255',
+//            'image'  => 'sometimes|nullable|image|mimes:jpeg,jpg,png',
+//            'channel_id' => 'required|numeric|exists:channels,id'
+        ]);
+
+        $thread->update($data);
+
+        return $thread;
     }
 
 
