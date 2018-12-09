@@ -81,6 +81,7 @@
                                             <h5 class="text-uppercase pb-80" v-text="thread.comments_count + ' Comments'"></h5>
                                             <br>
                                             <comments
+                                                    :locked="thread.locked"
                                                     @increase="thread.comments_count++"
                                                     @decrease="thread.comments_count--">
                                             </comments>
@@ -111,6 +112,14 @@
                                     <subscribe-thread :data="{{$thread}}"></subscribe-thread>
                                 </div>
                             </div>
+
+                                        <div class="single_widget cat_widget">
+                                            <h4 class="text-uppercase pb-20">Settings</h4>
+                                            <div>
+                                                <lock-thread :data="{{$thread}}"></lock-thread>
+                                            </div>
+                                        </div>
+
                             @endauth
 
                             <div class="single_widget cat_widget">

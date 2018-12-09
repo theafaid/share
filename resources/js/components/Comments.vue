@@ -14,7 +14,16 @@
             <div class="alert alert-warning">No Comments Found In This Thread !</div>
         </div>
 
-        <new-comment @created="add"></new-comment>
+        <div>
+            <div v-if="allowPosting">
+                <new-comment @created="add"></new-comment>
+            </div>
+            <div v-else>
+                <div class="alert alert-danger">
+                    Thread Creator has disabled comments.
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -31,15 +40,21 @@
             'paginator': Paginator
         },
 
+        props: ['locked'],
+
         data(){
             return {
                 items: [],
-                paginatorData: []
+                paginatorData: [],
+                allowPosting: ! this.locked
             }
         },
 
         created(){
             this.fetch();
+            Fire.$on('changeLockMode', () => {
+                this.allowPosting = ! this.allowPosting;
+            });
         },
 
         methods:{

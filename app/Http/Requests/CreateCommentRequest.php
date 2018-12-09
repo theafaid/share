@@ -44,6 +44,7 @@ class CreateCommentRequest extends FormRequest
     }
 
     public function persist($thread){
-        return $thread->locked ? response([], 422) :  $thread->addComment(request('body'))->load('user');
+        return $thread->locked ?
+            response([], 422) :  $thread->addComment(request('body'))->load('user');
     }
 }

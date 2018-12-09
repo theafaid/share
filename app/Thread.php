@@ -143,11 +143,17 @@ class Thread extends Model
         return array_map('json_decode', $trending);
     }
 
+    /**
+     * Lock a thread from posting comments
+     */
     public function lock(){
         $this->locked = true;
         $this->save();
     }
 
+    /**
+     * Enable posting comments in a thread
+     */
     public function unlock(){
         $this->locked = false;
         $this->save();

@@ -1,5 +1,5 @@
 <template>
-    <button :class="classes" @click="subscribe">
+    <button :class="classes" @click="subscribe" id="subscribeBtn">
         {{text}}
         ( {{subscriptions_count}} )
         <i class="fa fa-user-plus"></i>
@@ -49,5 +49,8 @@
 </script>
 
 <style scoped>
-
+#subscribeBtn{
+    display: inline;
+    width: 100%;
+}
 </style>
