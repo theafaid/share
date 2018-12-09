@@ -15,7 +15,7 @@
 </div>
 
 <div class="single-post-content">
-    <p v-text="thread.body"></p>
+    <p v-html="thread.body"></p>
 </div>
 
 <div class="form-group" v-if="authorize('updateThread', thread)">

@@ -51,10 +51,10 @@
 
                         <div class="form-group">
                             <label class="lead">Thread Body</label>
-                            <textarea name="body" class="form-control">
+                            {{--<textarea name="body" class="form-control">--}}
 
-                            </textarea>
-                            {{--<wysiwyg  ></wysiwyg>--}}
+                            {{--</textarea>--}}
+                            <wysiwyg name="body" content="{{old('body')}}"></wysiwyg>
                         </div>
 
                         <div class="form-group">

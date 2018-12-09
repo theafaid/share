@@ -5,7 +5,8 @@
     </div>
 
     <div class="form-group">
-        <textarea class="form-control" placeholder="Thread Body" v-model="form.body" style="height: 300px"></textarea>
+        {{--<textarea class="form-control" placeholder="Thread Body" v-model="form.body" style="height: 300px"></textarea>--}}
+        <wysiwyg name="body" v-model="form.body" :value="form.body"></wysiwyg>
     </div>
 
     <div class="form-group">
