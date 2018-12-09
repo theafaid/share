@@ -80,15 +80,18 @@
                             </div>
                         </div>
                         <div class="col-lg-4 sidebar-area ">
+
                             <div class="single_widget search_widget">
                                 <div id="imaginary_container">
                                     <div class="input-group stylish-input-group">
-                                        <input type="text" class="form-control"  placeholder="Search" >
-                                        <span class="input-group-addon">
-                                    <button type="submit">
-                                        <span class="lnr lnr-magnifier"></span>
-                                    </button>
-                                </span>
+                                        <form action="search" method="GET" class="form-inline">
+                                            <input type="text" name="q" class="form-control"  placeholder="Search" value="{{request('q')}}">
+                                            <span class="input-group-addon">
+                                            <button type="submit">
+                                                <span class="lnr lnr-magnifier"></span>
+                                            </button>
+                                        </span>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
