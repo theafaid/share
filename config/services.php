@@ -40,4 +40,9 @@ return [
         ],
     ],
 
+    'recaptcha' => [
+        'key'    => env("RECHAPTCHA_KEY"),
+        'secret' => env("RECHAPTCHA_SECRET")
+    ]
+
 ];

@@ -3,6 +3,10 @@
     Add New Thread
 @endsection
 
+@push('head')
+<script src='https://www.google.com/recaptcha/api.js'></script>
+@endpush
+
 @section('content')
 
     <!-- Start top-section Area -->
@@ -47,12 +51,19 @@
 
                         <div class="form-group">
                             <label class="lead">Thread Body</label>
-                            <wysiwyg  ></wysiwyg>
+                            <textarea name="body" class="form-control">
+
+                            </textarea>
+                            {{--<wysiwyg  ></wysiwyg>--}}
                         </div>
 
                         <div class="form-group">
                             <label class="lead">Upload Thread Image</label>
                             <input type="file" class="form-control" name="image">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="{{config('services.recaptcha.key')}}"></div>
                         </div>
 
                         <div class="form-group">

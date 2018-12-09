@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Rules\FreeSpam;
+use App\Rules\Recaptcha;
 use App\Thread;
 use App\Queries\ThreadsFilter;
 
@@ -52,20 +53,23 @@ class ThreadsController extends Controller
             'title' => ['required', 'string', 'max:255', new FreeSpam()],
             'body'  => ['required', 'string', 'min:255', new FreeSpam()],
             'image' => 'image|mimes:jpg,jpeg,png',
-            'channel_id' => 'required|numeric|exists:channels,id'
+            'channel_id' => 'required|numeric|exists:channels,id',
+            'g-recaptcha-response' => [new Recaptcha()]
         ]);
+
+        unset($data['g-recaptcha-response']);
 
         // Upload a thread image
         $data['image'] = request()->hasFile('image') ?
-                            request()->file('image')->store('threads') : null ;
+            request()->file('image')->store('threads') : null ;
 
         $data['user_id' ] = auth()->id();
 
         $thread = Thread::create($data);
 
         return redirect(route('threads.show', $thread->slug));
-    }
 
+    }
 
     /**
      * @param Thread $thread

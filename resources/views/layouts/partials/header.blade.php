@@ -43,5 +43,7 @@
 			]) !!}
 
 	</script>
+
+	@stack('head')
 </head>
 <body>

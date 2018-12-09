@@ -113,12 +113,14 @@
                                 </div>
                             </div>
 
+                                @can('update', $thread)
                                         <div class="single_widget cat_widget">
                                             <h4 class="text-uppercase pb-20">Settings</h4>
                                             <div>
                                                 <lock-thread :data="{{$thread}}"></lock-thread>
                                             </div>
                                         </div>
+                                @endcan
 
                             @endauth
 
