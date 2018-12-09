@@ -150,7 +150,7 @@
 
             removeBestComment(){
                 this.isBest = false;
-                this.$toaster.warning"You Removed The Best Comment");
+                this.$toaster.warning("You Removed The Best Comment");
                 axios.delete(`/comments/${this.data.id}/best`);
             }
         }
