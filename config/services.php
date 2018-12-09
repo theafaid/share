@@ -40,6 +40,12 @@ return [
         ],
     ],
 
+    'algolia' => [
+        'id' => env('ALGOLIA_APP_ID'),
+        'key' => env('ALGOLIA_KEY'),
+        'secret' => env('ALGOLIA_SECRET')
+    ],
+
     'recaptcha' => [
         'key'    => env("RECHAPTCHA_KEY"),
         'secret' => env("RECHAPTCHA_SECRET")

@@ -8,8 +8,8 @@
 
     <template>
         <ais-index
-                app-id="YHICOWLJHA"
-                api-key="0ab5c9125e07a5bf3ab55a974dc24f29"
+                app-id="{{config('services.algolia.id')}}"
+                api-key="{{config('services.algolia.key')}}"
                 index-name="threads"
                 query="{{request('q')}}"
         >
