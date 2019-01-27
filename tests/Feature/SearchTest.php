@@ -24,6 +24,7 @@ class SearchTest extends TestCase
         create('App\Thread', ['body' => "this is just a {$search}"], 2);
 
         do {
+            sleep(.5);
             $result = $this->getJson("/search?q={$search}")->json();
         } while(empty($result));
 
