@@ -28,7 +28,7 @@ class SearchTest extends TestCase
             $result = $this->getJson("/search?q={$search}")->json();
         } while(empty($result));
 
-        $this->assertCount(0, $result['data']);
+        $this->assertCount(2, $result['data']);
 
         Thread::latest()->take(4)->unsearchable();
     }

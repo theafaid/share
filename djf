@@ -1,0 +1,449 @@
+[33mcommit 7d14c285bb3e1c2825b78b12ca9ab97bf478a884[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: abdulrahmanFaid <abdulrahman_faid@outlook.com>
+Date:   Sun Jan 27 18:51:07 2019 +0200
+
+    Fix npm err
+
+[33mcommit 4699e3a2ca9d876ad223347f381521dcfc8eee91[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Dec 9 18:57:28 2018 +0200
+
+    Finishing wysiwyg for create and update a thread
+
+[33mcommit ec100a212371fc4a48414440da99ee921040ba9d[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Dec 9 15:58:14 2018 +0200
+
+    Finish Searching using algolia
+
+[33mcommit 5ba7a9a58a3dd45572099c7468cb6dfbf0f0f089[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Dec 9 15:53:50 2018 +0200
+
+    The thread creator can update it
+
+[33mcommit 378828387494668bfeb8ed4a4853a5860d3ce319[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Dec 9 14:47:25 2018 +0200
+
+    The thread creator can update it
+
+[33mcommit 0ef81db25319d9f264a629e4fd83dd717041c0d8[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Dec 9 12:51:27 2018 +0200
+
+    Finish Recaptcha validation
+
+[33mcommit 2bebf09681148afd8c461e5caf8d72dea4b2237f[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Dec 9 10:31:26 2018 +0200
+
+    Update dependencies
+
+[33mcommit 15be2a13e4dd4bbdb8cea1a05c199da35ed0a0f2[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Dec 9 10:01:34 2018 +0200
+
+    finishing lock a thread by the creator
+
+[33mcommit 9573e80d69bf975a3006111941bda6e85d9231fb[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Dec 9 08:49:49 2018 +0200
+
+    Fix err > delete the best comment from thread after deleted the comment
+
+[33mcommit 64aa0828791896a9197e221f43b9264f7cc420ef[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Dec 8 15:03:51 2018 +0200
+
+    Remove the commet from the best comment if it was . & fix some bugs
+
+[33mcommit 171faa5b653b440834a313808461429e454f8b84[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Dec 8 14:19:30 2018 +0200
+
+    Refactoring Authorizations and Finish mark the best comment in the thread
+
+[33mcommit 80e46334a0ed856d2a9c32ba4aa88cb4111cfeca[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Dec 8 10:57:59 2018 +0200
+
+    Some refactoring
+
+[33mcommit 26cb92464e2e1cf4d4d73ed12894d6b08ff51b10[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Thu Nov 22 17:00:13 2018 +0200
+
+    Intall trix text editor
+
+[33mcommit c0c79fadfca756b2c15885d69ff3b5278d38eb41[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Thu Nov 22 16:49:28 2018 +0200
+
+    Finish search page with algolia
+
+[33mcommit 2792b1bd503c1bd413c44d8303820be5179d6657[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Thu Nov 22 15:17:37 2018 +0200
+
+    Install VueJs InstantSearch
+
+[33mcommit 0f58eb276dafbd303d53683da4c507faf45ea81a[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Thu Nov 22 15:10:23 2018 +0200
+
+    Test searching for a thread and complete the frontend end backend for seraching
+
+[33mcommit 1b5419abcd2f4e2d269c57df8ef86b762116e35b[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Thu Nov 22 13:46:05 2018 +0200
+
+    Install laravel scout and algolia for searching
+
+[33mcommit b06fbcc3cf57babc52c23b73936b78a1406803cd[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Wed Nov 21 18:01:36 2018 +0200
+
+    Edit marking the best comment and improve test
+
+[33mcommit b42c748bdfe75341b178b89722e8dfb720a1cabf[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Wed Nov 21 16:30:14 2018 +0200
+
+    Fix that a thread must have a unique slug
+
+[33mcommit 72bff7cfb88a391054704c7205487ffcdb01872a[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Wed Nov 21 15:28:56 2018 +0200
+
+    add new ImageUpload component to refactor from single UserAvatarForm component to multi component
+
+[33mcommit de8fa28d885a5c74886420fa5864f05a7cdb492c[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Tue Nov 20 21:43:52 2018 +0200
+
+    Improving code quality
+
+[33mcommit 1a260ec20f5200f00969dcffa4c93fcb650e9649[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Tue Nov 20 20:14:04 2018 +0200
+
+    Refactoring to form request
+
+[33mcommit 6eb58baa008f6100733d379ebe11d9cfc76a326b[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Tue Nov 20 19:33:45 2018 +0200
+
+    Refactor Spam detection
+
+[33mcommit 30d8efeb548389585557c3cfc72ebcc6e19ac20d[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Tue Nov 20 19:03:13 2018 +0200
+
+    Refactor from saveInCache to read method
+
+[33mcommit 633872a509231e74cc7784473ff0e99276789365[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Mon Nov 19 11:41:31 2018 +0200
+
+    Lock a thread
+
+[33mcommit 3daf5942b1e95b97d806fea3f9f67a4a36853a50[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Mon Nov 5 12:00:26 2018 +0200
+
+    login page design
+
+[33mcommit d3b4012f2eb90ba3ed6e90824997911e9a810a68[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Nov 4 23:13:23 2018 +0200
+
+    Edit Thread Slug
+
+[33mcommit a69cea7127366730d90c70120fe9b08c3f2073df[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Tue Oct 30 16:26:01 2018 +0200
+
+    Mark best comment 'front-end'
+
+[33mcommit 43c1a77e312e74b9476b05d32a2e4761336c41da[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Tue Oct 30 15:12:57 2018 +0200
+
+    Mark the best comment 'backend'
+
+[33mcommit 24a96d91b2c6407241ed4df56aa7854e3e985385[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Tue Oct 30 13:12:13 2018 +0200
+
+    A thread must have a unique slug
+
+[33mcommit 3b468251c1a17025e91c4a4205a800c00a882a9a[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Tue Oct 30 12:58:52 2018 +0200
+
+    Refactor Thread Visits
+
+[33mcommit 48fe5df64447b5981ccfa2fee4841f171b3a8a32[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Tue Oct 30 01:11:03 2018 +0200
+
+    Email Verfication
+
+[33mcommit c57c6c716b7ff240c60e11c02577118aa574b7a9[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Tue Oct 30 00:47:38 2018 +0200
+
+    Refactor Thread Visits
+
+[33mcommit 84f886c3e085be30024c2186b2c5e804fe9adb1d[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Tue Oct 30 00:35:57 2018 +0200
+
+    Record visit for a thread using Redis
+
+[33mcommit ad3e037cb20d47f1c2c320a6e5c72f58664b0f9e[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Tue Oct 30 00:15:16 2018 +0200
+
+    Fix Trending Threads Bugs
+
+[33mcommit b4addbd072202a67ec38d849ee827452880df431[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Mon Oct 29 23:34:28 2018 +0200
+
+    Trending Threads Using Redis
+
+[33mcommit f4c983d8bf515e4e11fc2ac6a6ea14215ce2202e[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Mon Oct 29 22:30:37 2018 +0200
+
+    Upload user avatar using ajax and vue component
+
+[33mcommit 295c818e2109c37e1d504db981002c840dc712bc[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Mon Oct 29 19:42:37 2018 +0200
+
+    User can update his profile data
+
+[33mcommit dc239af28ee4b7388567c393968306e400d9b00b[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Mon Oct 29 19:41:09 2018 +0200
+
+    User can update his profile data
+
+[33mcommit db55dee1672bdb50447b2d61b4bf1b4b46e41a50[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Mon Oct 29 19:37:56 2018 +0200
+
+    User can update his profile data
+
+[33mcommit 1668614f83bfc62607e0aabc7b7cb7c3ed6aeb83[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Mon Oct 29 19:00:38 2018 +0200
+
+    Some Refactor And Clean Code
+
+[33mcommit b7e8270c3b4d29a2334440a53464689c730e8cbb[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Mon Oct 29 18:03:15 2018 +0200
+
+    Mention users using autocompilation (at.js)
+
+[33mcommit ceb1616d73edb89d849d064bc2917acd881661b3[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Mon Oct 29 17:10:11 2018 +0200
+
+    Notify Mentioned Users For Front End
+
+[33mcommit c2217f4922f9579e98a5b9cd51308db40dc1e02c[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Mon Oct 29 16:33:50 2018 +0200
+
+    Notify mentioned users backend and refactory to event
+
+[33mcommit d4616d5824a2d162de0a2e0b1ce23839e948bed0[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Mon Oct 29 14:56:37 2018 +0200
+
+    User Can Only Add One Comment Per Minute
+
+[33mcommit c47f81393297d489133e46f127dff78ea0ae0665[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 22:54:27 2018 +0200
+
+    Add Spam Detection
+
+[33mcommit 691cf768c4266cb60380a8fa418fa76c5f25df75[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 20:39:55 2018 +0200
+
+    thread has updated since your last seen
+
+[33mcommit b99aa35326680fb0a0dad2795269d9b5aa86dffa[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 20:02:08 2018 +0200
+
+    Update Notifications Test
+
+[33mcommit a133c4132066bd225aeaaa4244e51659694349c4[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 19:15:52 2018 +0200
+
+    Notify User After anybody liked his comment
+
+[33mcommit c1d415e292050c950156fb03e3cb9e85dfd6427a[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 18:47:16 2018 +0200
+
+    Some Refactory
+
+[33mcommit 99ebf602d912276310cb963cb0446aa20e956b37[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 18:34:17 2018 +0200
+
+    User Notification (Threads Notifications)
+
+[33mcommit 9700959516c2e574d0f2af543c830f009fbe0bf8[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 17:24:54 2018 +0200
+
+    Notify thread subscribers after new comment created
+
+[33mcommit 672e2eaeb085dadac4342997b53d092ce4dc0f40[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 16:52:45 2018 +0200
+
+    User Can Subscribe To  a Thread
+
+[33mcommit 58103767be4374cb5d3a05f25d070c320f49e1ca[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 16:41:39 2018 +0200
+
+    User Can Subscribe To  a Thread
+
+[33mcommit b449f2205752d173d68699465766e76d359edc90[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 16:28:37 2018 +0200
+
+    User Can Subscribe To  a Thread
+
+[33mcommit 9294887d999d72e115a272fd5431a08a78e5b770[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 15:00:00 2018 +0200
+
+    Filter Threads By Unanswered
+
+[33mcommit 3b8d9d09a7cce2aa530ebab32cda0db4398f9fbc[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 14:37:39 2018 +0200
+
+    Create README:
+
+[33mcommit 202e79bd4fb779a9e20c39ee323ffc888709cff5[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 14:03:58 2018 +0200
+
+    Paginate Comments With Ajax & Vuejs Component
+
+[33mcommit 8164e649932ba3ed76c2dfaca654ea069917e6cb[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 13:03:09 2018 +0200
+
+    Update New Comment Component
+
+[33mcommit 15c21e57413330d35237b18ba5cb1199b50da72d[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 12:36:26 2018 +0200
+
+    New Comment Component And Fix Like Component Bugs
+
+[33mcommit d1df64cc430934222e775c2a31a7ea3e74692c6b[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 01:41:44 2018 +0200
+
+    Data centric Approach
+
+[33mcommit 0f87b2a0b2c7b7d6d7842575b024002ca5f6ce67[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sun Oct 28 00:13:06 2018 +0200
+
+    Some Good Refactor
+
+[33mcommit 313243a40ffa6d0485a73c990cc456a2f8f653dd[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Oct 27 23:59:30 2018 +0200
+
+    LikeComment Component
+
+[33mcommit 535f2d907e041225b963afde7ec0222d6dccf523[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Oct 27 23:19:32 2018 +0200
+
+    Delete Using Vue
+
+[33mcommit 1c34301db9800443de22784d2f80d79bb5f0284d[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Oct 27 22:59:08 2018 +0200
+
+    Comment Component
+
+[33mcommit 7b64a11096a24d12e16b3ad33e80fa8a0bb213c6[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Oct 27 20:53:34 2018 +0200
+
+    fix errors for delete a comment
+
+[33mcommit abb5bc20a16f4232f9926b1b4c637887b1311f74[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Oct 27 20:30:16 2018 +0200
+
+    authenticated user can delete his comments
+
+[33mcommit 6940e5d52451bfcda6857727545c8a50fe59b85c[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Oct 27 19:48:27 2018 +0200
+
+    Install Toaster For Flash Messages
+
+[33mcommit deafab116b407d3efedeefa1a9bc2c14bb98068d[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Oct 27 19:29:47 2018 +0200
+
+    install node_modules & setup vuejs
+
+[33mcommit 268092ddc78dfc4e5e1252013ce73a73c1a56590[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Oct 27 18:54:31 2018 +0200
+
+    complete activities and fix deletion bug
+
+[33mcommit 55ce8475ef16bc405f6449d46aa54f32c48a8c9f[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Oct 27 18:11:11 2018 +0200
+
+    finish activity 'created'
+
+[33mcommit 21ceb859acc1903aea12452ca1ebd20f3660b3a8[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Oct 27 17:41:07 2018 +0200
+
+    Activities (front end) and unit test
+
+[33mcommit 6d3d678335248e85260bb807b2a075b546ab060c[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Oct 27 16:42:19 2018 +0200
+
+    Record an Activity
+
+[33mcommit 96cc9b4dc8ab39e4072b8534cad9f6b8237d3d43[m
+Author: Abdulrahman Faid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Oct 27 15:11:28 2018 +0200
+
+    add profile link
+
+[33mcommit e37d35db6f7eb2b5bccdf24994efe5e21f02e170[m
+Author: AbdulrahmanFaid <abdulrahmanfaid11@gmail.com>
+Date:   Sat Oct 27 14:31:15 2018 +0200
+
+    first commit
