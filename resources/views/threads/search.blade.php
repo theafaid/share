@@ -7,12 +7,12 @@
 @section('content')
 
     <template>
-        <ais-index
-                app-id="{{config('services.algolia.id')}}"
-                api-key="{{config('services.algolia.key')}}"
-                index-name="threads"
-                query="{{request('q')}}"
-        >
+            <ais-index
+                    app-id="{{config('services.algolia.id')}}"
+                    api-key="{{config('services.algolia.key')}}"
+                    index-name="threads"
+                    query="{{request('q')}}"
+            >
 
     <!-- Start top-section Area -->
     <section class="top-section-area section-gap">
