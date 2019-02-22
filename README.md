@@ -7,8 +7,8 @@ design.
 
 ![screenshot from 2019-02-22 04-56-42](https://user-images.githubusercontent.com/43038778/53218732-f5814f80-3665-11e9-8345-30a21ed1e067.png)
 ![screenshot from 2019-02-22 04-56-53](https://user-images.githubusercontent.com/43038778/53218734-f87c4000-3665-11e9-8d7e-7fa7f75a3051.png)
-![screenshot from 2019-02-22 04-57-32](https://user-images.githubusercontent.com/43038778/53218735-f9ad6d00-3665-11e9-9804-fed2e3994982.png)
-![screenshot from 2019-02-22 04-58-15](https://user-images.githubusercontent.com/43038778/53218739-fb773080-3665-11e9-9baf-50629389198f.png)
+![screenshot from 2019-02-22 17-26-07](https://user-images.githubusercontent.com/43038778/53252381-6c026980-36c7-11e9-9aad-b93495e88706.png)
+![screenshot from 2019-02-22 17-28-02](https://user-images.githubusercontent.com/43038778/53252384-6dcc2d00-36c7-11e9-9e85-25887f782005.png)
 ![screenshot from 2019-02-22 04-59-02](https://user-images.githubusercontent.com/43038778/53218742-fdd98a80-3665-11e9-8cce-fcbe442630e3.png)
 <br>
 
