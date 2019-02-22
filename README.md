@@ -1,19 +1,49 @@
-**Share**<br>
+##Share<br>
 
-_A simple knowledge sharing through information, skills, or expertise. 
-Build With PHP (laravel framework & Vuejs & Bootstrap Framework)._
+A simple knowledge sharing through information, skills, or expertise. 
+Built With PHP (laravel framework & Vue js).<br>
+It includes a lot of simple features and also advanced features came with simple 
+design.
 
-**Share Project Includes** :
+![alt text](/home/aaaf/Pictures/Screenshot from 2019-02-22 04-56-42.png)<hr>
+![alt text](/home/aaaf/Pictures/Screenshot from 2019-02-22 04-56-53.png)<hr>
+![alt text](/home/aaaf/Pictures/Screenshot from 2019-02-22 04-57-32.png)<hr>
+![alt text](/home/aaaf/Pictures/Screenshot from 2019-02-22 04-58-15.png)<hr>
+![alt text](/home/aaaf/Pictures/Screenshot from 2019-02-22 04-59-02.png)<hr>
+
+**Used Techniques (backend)**
+
+    - Laravel Scout & Algolia Search Engine
+    - Redis for caching 
+    - Zttp (like Guzzle) for Sending Requests to Google Capatcha
+    
+**Used Techniques (frontend)**
+
+    - Bootstrap Framework
+    - Jquery 
+    - Axios for ajax requests
+    - Font awesome
+    - Highlight js
+    - Owl Carousel
+    
+    - Libiraries 
+        - vue-instancesearch
+        - moment.js
+        - v-toaster
+        - at.js
+        - trix editor
+
+**Share Includes** :
 
 - Filter Threads
 
 - Likes & Comments 
 
-- Notifications System 
+- Notifications 
 
-- Subscriptions System
+- Subscriptions
 
-- Caching Using Redis
+- Advanced Caching using Redis
 
 - Spam Detection
 
@@ -21,16 +51,16 @@ Build With PHP (laravel framework & Vuejs & Bootstrap Framework)._
 
 - Mention Users With Autocomplete Feature
 
-- Image Uploading With Ajax Requests 
+- Ajaxfying image uploading
 
-- Email Verfication 
+- Email Verification 
 
-- Lock Commenting && Mark Best.
+- Lock Commenting && Mark Best Comments.
 
 - Trending Posts According To (Comments, Likes, Watches) Count
 
 - Recaptcha
 
-- Advanced Search Using Vuejs & Laravel Scout & Algolia
+- Advanced instance search using algolia 
 
-- Writing Using Wysiwyg
+- Wysiwyg Editor 
