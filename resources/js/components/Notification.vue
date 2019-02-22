@@ -17,8 +17,8 @@
                 </a>
             </div>
 
-            <div v-else class="alert alert-primary">
-                <a class="dropdown-item">You Don' Have Any Notifications</a>
+            <div v-else class="badge badge-danger">
+                You Don' Have Any Notifications
             </div>
 
         </div>

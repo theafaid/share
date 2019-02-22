@@ -23,7 +23,6 @@ Route::get('/', function () {
 Auth::routes(['verify' => 'true']);
 
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/search', 'SearchController@index');
 Route::resource('/threads', 'ThreadsController');
 Route::get('/threads/{thread}/comments', 'CommentsController@index');

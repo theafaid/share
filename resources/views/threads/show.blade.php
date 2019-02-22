@@ -135,49 +135,27 @@
                                     <li>
                                         <a>Views <span v-text="{{$thread->visits()}}"></span></a>
                                     </li>
+                                    @guest
+                                        <div class="alert alert-danger">
+                                            Please <a href="{{route('login')}}">sign in</a> to start participating.
+                                        </div>
+                                    @endguest
                                 </ul>
                             </div>
 
                              <div class="single_widget recent_widget">
                                 <h4 class="text-uppercase pb-20">Recent Posts</h4>
                                 <div class="active-recent-carusel">
-                                    <div class="item">
-                                        <img src="img/asset/slider.jpg" alt="">
-                                        <p class="mt-20 title text-uppercase">Home Audio Recording <br>
-                                            For Everyone</p>
-                                        <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
-                                    </div>
-                                    <div class="item">
-                                        <img src="img/asset/slider.jpg" alt="">
-                                        <p class="mt-20 title text-uppercase">Home Audio Recording <br>
-                                            For Everyone</p>
-                                        <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
-                                    </div>
-                                    <div class="item">
-                                        <img src="img/asset/slider.jpg" alt="">
-                                        <p class="mt-20 title text-uppercase">Home Audio Recording <br>
-                                            For Everyone</p>
-                                        <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
-                                    </div>
+                                    @foreach($latestThreads as $latestThread)
+                                        <div class="item">
+                                            <img src="{{$latestThread->imagePath}}" alt="" width="250" height="150">
+                                            <p class="mt-20 title text-uppercase">
+                                                <a href="{{route('threads.show', $latestThread->slug)}}">{{str_limit($latestThread->title, 40)}}</a>
+                                            </p>
+                                            <p>{{$latestThread->created_at}}<span>
+                                        </div>
+                                    @endforeach
                                 </div>
-                            </div>
-
-                            <div class="single_widget tag_widget">
-                                <h4 class="text-uppercase pb-20">Tag Clouds</h4>
-                                <ul>
-                                    <li><a href="#">Lifestyle</a></li>
-                                    <li><a href="#">Art</a></li>
-                                    <li><a href="#">Adventure</a></li>
-                                    <li><a href="#">Food</a></li>
-                                    <li><a href="#">Technology</a></li>
-                                    <li><a href="#">Fashion</a></li>
-                                    <li><a href="#">Adventure</a></li>
-                                    <li><a href="#">Food</a></li>
-                                    <li><a href="#">Technology</a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>

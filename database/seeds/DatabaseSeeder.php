@@ -11,11 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-    	factory(App\User::class, 10)->create();
-    	factory(App\Channel::class, 10)->create();
+    	factory(App\User::class, 30)->create();
+    	factory(App\Channel::class, 5)->create();
     	factory(App\Thread::class, 50)->create();
         factory(App\Comment::class, 100)->create();
-        factory(App\Like::class, 100)->create();
+        factory(App\Like::class, 20)->create();
         // $this->call(UsersTableSeeder::class);
     }
 }

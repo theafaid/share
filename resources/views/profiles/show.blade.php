@@ -11,7 +11,7 @@
                 <div class="col-lg-8 top-left">
                     <h1 class="text-white mb-20">{{$title}}</h1>
                     <pre>
-                        <span>Member Since {{$profileUser->created_at->diffForHumans()}}</span>
+                        <span class="badge badge-info">Member Since {{$profileUser->created_at->diffForHumans()}}</span>
                     </pre>
                 </div>
 

@@ -32,7 +32,8 @@ class ThreadsController extends Controller
         return view('threads.index', [
             'title'   => $data['title'],
             'threads' => $data['data'],
-            'trending' => (new Thread())->getTrending()
+            'trending' => (new Thread())->getTrending(),
+            'latestThreads' => Thread::latest()->take(5)->get()
         ]);
     }
 
@@ -84,7 +85,10 @@ class ThreadsController extends Controller
 
         $thread->recordVisit();
 
-        return view('threads.show', compact('thread'));
+        return view('threads.show', [
+            'latestThreads' => Thread::latest()->take(5)->get(),
+            'thread' => $thread
+        ]);
     }
 
     /**

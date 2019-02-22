@@ -42,8 +42,18 @@ $factory->define(App\Thread::class, function (Faker $faker) {
         'title' => $sentence,
         'slug' => str_slug($sentence),
         'body' => $faker->paragraph . " " . $faker->paragraph,
-        'user_id' => function(){return factory(App\User::class)->create()->id;},
-        'channel_id' => function(){return factory(App\Channel::class)->create()->id;}
+        'user_id' => function(){
+            if(! app()->runningUnitTests()){
+                return \App\User::all()->random()->id;
+            }
+            return factory(App\User::class)->create()->id;
+        },
+        'channel_id' => function(){
+            if(! app()->runningUnitTests()){
+                return \App\Channel::all()->random()->id;
+            }
+            return factory(App\Channel::class)->create()->id;
+        }
     ];
 });
 
@@ -52,24 +62,54 @@ $factory->define(App\Thread::class, function (Faker $faker) {
 $factory->define(App\Comment::class, function (Faker $faker) {
     return [
         'body' => $faker->paragraph,
-        'user_id' => function(){return factory(App\User::class)->create()->id;},
-        'thread_id' => function(){return factory(App\Thread::class)->create()->id;}
+        'user_id' => function(){
+            if(! app()->runningUnitTests()){
+                return \App\User::all()->random()->id;
+            }
+            return factory(App\User::class)->create()->id;
+        },
+        'thread_id' => function(){
+            if(! app()->runningUnitTests()){
+                return \App\Thread::all()->random()->id;
+            }
+            return factory(App\Thread::class)->create()->id;
+        }
     ];
 });
 
 //////////////// Like Factory ///////////////////////////
 $factory->define(App\Like::class, function (Faker $faker) {
     return [
-        'user_id' => function(){return factory(App\User::class)->create()->id;},
-        'likable_id' => function(){return factory(App\Comment::class)->create()->id;},
+        'user_id' => function(){
+            if(! app()->runningUnitTests()){
+                return \App\User::all()->random()->id;
+            }
+            return factory(App\User::class)->create()->id;
+        },
+        'likable_id' => function(){
+            if(! app()->runningUnitTests()){
+                return \App\Comment::all()->random()->id;
+            }
+            return factory(App\Comment::class)->create()->id;
+        },
         'likable_type' => 'App\Comment'
     ];
 });
 
-$factory->define(App\Like::class, function (Faker $faker) {
-    return [
-        'user_id' => function(){return factory(App\User::class)->create()->id;},
-        'likable_id' => function(){return factory(App\Thread::class)->create()->id;},
-        'likable_type' => 'App\Comment'
-    ];
-});
+//$factory->define(App\Like::class, function (Faker $faker) {
+//    return [
+//        'user_id' => function(){
+//            if(! app()->runningUnitTests()){
+//                return \App\User::all()->random()->id;
+//            }
+//            return factory(App\User::class)->create()->id;
+//        },
+//        'likable_id' => function(){
+//            if(! app()->runningUnitTests()){
+//                return \App\Thread::all()->random()->id;
+//            }
+//            return factory(App\Thread::class)->create()->id;
+//        },
+//        'likable_type' => 'App\Comment'
+//    ];
+//});

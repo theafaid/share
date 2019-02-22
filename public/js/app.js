@@ -76392,10 +76392,8 @@ var render = function() {
             }),
             0
           )
-        : _c("div", { staticClass: "alert alert-primary" }, [
-            _c("a", { staticClass: "dropdown-item" }, [
-              _vm._v("You Don' Have Any Notifications")
-            ])
+        : _c("div", { staticClass: "badge badge-danger" }, [
+            _vm._v("\n            You Don' Have Any Notifications\n        ")
           ])
     ])
   ])
